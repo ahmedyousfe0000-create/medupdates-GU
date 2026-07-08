@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ليبر بيتزا — Lipper Pizza | أم درمان، السودان</title>
+<meta name="description" content="ليبر بيتزا — بيتزا فرن حطب من قلب أم درمان. عجينة تتخمّر ٤٨ ساعة، مكوّنات طازجة، وطلب مباشر عبر واتساب.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --clr-char:#1B120D;        /* charcoal espresso */
+  --clr-char-soft:#2A1C14;
+  --clr-cream:#FAF1E3;       /* oven-lit cream */
+  --clr-cream-deep:#F1E3CC;
+  --clr-brick:#C0392B;       /* brick red */
+  --clr-brick-deep:#96271B;
+  --clr-gold:#D9A441;        /* desert gold */
+  --clr-gold-soft:#E8C983;
+  --clr-basil:#4C6B3C;
+  --clr-ink-soft:#5C4A3B;
+  --space-1:8px; --space-2:16px; --space-3:24px; --space-4:32px;
+  --space-5:48px; --space-6:64px; --space-7:96px; --space-8:128px;
+  --radius:18px;
+  --shadow-card:0 6px 24px rgba(27,18,13,.10);
+  --shadow-lift:0 18px 48px rgba(27,18,13,.18);
+  --ease-out:cubic-bezier(.22,1,.36,1);
+  --font-display-ar:'Amiri',serif;
+  --font-display-en:'Playfair Display',serif;
+  --font-body:'Rubik',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{
+  font-family:var(--font-body);
+  background:var(--clr-cream);
+  color:var(--clr-char);
+  font-size:16px;line-height:1.7;
+  overflow-x:hidden;
+}
+::selection{background:var(--clr-gold);color:var(--clr-char)}
+img,svg{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:3px solid var(--clr-gold);outline-offset:3px;border-radius:4px}
+
+/* ============ LANGUAGE SWITCHING ============ */
+.en-t{display:none}
+body.lang-en .ar-t{display:none}
+body.lang-en .en-t{display:inline}
+body.lang-en .en-t.block-t{display:block}
+
+h1,h2,h3,.display{font-family:var(--font-display-ar)}
+body.lang-en h1,body.lang-en h2,body.lang-en h3,body.lang-en .display{font-family:var(--font-display-en)}
+
+/* ============ NAV ============ */
+.nav{
+  position:fixed;inset-inline:0;top:0;z-index:100;
+  padding:14px clamp(16px,4vw,48px);
+  display:flex;align-items:center;justify-content:space-between;gap:var(--space-2);
+  transition:background .3s var(--ease-out),box-shadow .3s var(--ease-out),padding .3s var(--ease-out);
+}
+.nav.scrolled{
+  background:rgba(250,241,227,.92);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  box-shadow:0 1px 0 rgba(27,18,13,.08),0 8px 24px rgba(27,18,13,.06);
+  padding-block:10px;
+}
+.nav-logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.15rem;color:var(--clr-cream);transition:color .3s}
+.nav.scrolled .nav-logo{color:var(--clr-char)}
+.nav-logo .mark{width:38px;height:38px;flex:none}
+.nav-links{display:flex;gap:var(--space-3);list-style:none;align-items:center}
+.nav-links a{
+  color:var(--clr-cream);font-size:.95rem;font-weight:500;position:relative;padding:6px 2px;transition:color .3s;
+}
+.nav.scrolled .nav-links a{color:var(--clr-char)}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;inset-inline-start:0;width:0;height:2px;
+  background:var(--clr-gold);transition:width .25s var(--ease-out);border-radius:2px;
+}
+.nav-links a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.lang-btn{
+  min-width:44px;min-height:44px;padding:0 14px;border-radius:999px;
+  border:1.5px solid currentColor;color:var(--clr-cream);
+  font-weight:600;font-size:.85rem;transition:all .25s var(--ease-out);
+}
+.nav.scrolled .lang-btn{color:var(--clr-char)}
+.lang-btn:hover{background:var(--clr-gold);border-color:var(--clr-gold);color:var(--clr-char)}
+.burger{display:none;width:44px;height:44px;border-radius:12px;position:relative;z-index:110}
+.burger span{
+  display:block;width:22px;height:2px;background:var(--clr-cream);margin:5px auto;
+  border-radius:2px;transition:all .3s var(--ease-out);
+}
+.nav.scrolled .burger span{background:var(--clr-char)}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.burger.open span{background:var(--clr-cream)!important}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:52px;padding:14px 30px;border-radius:999px;
+  font-weight:600;font-size:1rem;
+  transition:transform .2s var(--ease-out),box-shadow .25s var(--ease-out),background .25s;
+  will-change:transform;
+}
+.btn:active{transform:scale(.97)}
+.btn-primary{
+  background:var(--clr-brick);color:#fff;
+  box-shadow:0 8px 24px rgba(192,57,43,.35);
+}
+.btn-primary:hover{background:var(--clr-brick-deep);transform:translateY(-2px);box-shadow:0 14px 32px rgba(192,57,43,.4)}
+.btn-ghost{
+  border:1.5px solid rgba(250,241,227,.5);color:var(--clr-cream);
+}
+.btn-ghost:hover{border-color:var(--clr-gold);color:var(--clr-gold);transform:translateY(-2px)}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;min-height:100dvh;
+  display:flex;align-items:center;
+  background:
+    radial-gradient(1200px 700px at 80% 110%,rgba(217,164,65,.22),transparent 60%),
+    radial-gradient(900px 500px at 15% -10%,rgba(192,57,43,.28),transparent 55%),
+    linear-gradient(180deg,#241710 0%,var(--clr-char) 60%,#150D09 100%);
+  color:var(--clr-cream);
+  padding:120px clamp(16px,5vw,64px) var(--space-7);
+  overflow:hidden;
+}
+.hero-inner{
+  max-width:1200px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1.1fr .9fr;gap:var(--space-6);align-items:center;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.85rem;font-weight:500;letter-spacing:.06em;
+  color:var(--clr-gold-soft);
+  border:1px solid rgba(217,164,65,.35);border-radius:999px;
+  padding:8px 18px;margin-bottom:var(--space-3);
+}
+.hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--clr-gold);animation:pulse 2.4s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.hero h1{
+  font-size:clamp(2.6rem,7vw,4.8rem);line-height:1.15;font-weight:700;
+  margin-bottom:var(--space-3);
+}
+.hero h1 .accent{
+  color:var(--clr-gold);position:relative;display:inline-block;
+}
+.hero h1 .accent::after{
+  content:'';position:absolute;bottom:6px;inset-inline:0;height:10px;
+  background:rgba(192,57,43,.5);z-index:-1;border-radius:4px;
+  transform:scaleX(0);transform-origin:var(--underline-origin,right);
+  animation:draw-line 1s var(--ease-out) .8s forwards;
+}
+body.lang-en .hero h1 .accent::after{--underline-origin:left}
+@keyframes draw-line{to{transform:scaleX(1)}}
+.hero p.lede{
+  font-size:clamp(1.05rem,2vw,1.25rem);color:rgba(250,241,227,.82);
+  max-width:52ch;margin-bottom:var(--space-4);font-weight:300;
+}
+.hero-ctas{display:flex;gap:var(--space-2);flex-wrap:wrap}
+.hero-meta{
+  display:flex;gap:var(--space-4);margin-top:var(--space-5);flex-wrap:wrap;
+}
+.hero-meta .item{display:flex;align-items:center;gap:10px;font-size:.9rem;color:rgba(250,241,227,.75)}
+.hero-meta svg{width:18px;height:18px;color:var(--clr-gold);flex:none}
+
+/* Hero pizza art */
+.hero-art{position:relative;display:grid;place-items:center}
+.pizza-wrap{position:relative;width:min(420px,80vw);aspect-ratio:1}
+.pizza-svg{width:100%;height:100%;filter:drop-shadow(0 30px 60px rgba(0,0,0,.5));animation:pizza-drift 14s ease-in-out infinite}
+@keyframes pizza-drift{
+  0%,100%{transform:rotate(-4deg) translateY(0)}
+  50%{transform:rotate(4deg) translateY(-16px)}
+}
+.pizza-ring{
+  position:absolute;inset:-9%;border-radius:50%;
+  border:1.5px dashed rgba(217,164,65,.4);
+  animation:spin 40s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ember{
+  position:absolute;border-radius:50%;
+  background:radial-gradient(circle,var(--clr-gold-soft),rgba(217,164,65,0) 70%);
+  opacity:0;animation:float-up var(--dur,9s) linear infinite var(--delay,0s);
+  pointer-events:none;
+}
+@keyframes float-up{
+  0%{opacity:0;transform:translateY(0) scale(.6)}
+  15%{opacity:.9}
+  80%{opacity:.35}
+  100%{opacity:0;transform:translateY(-58vh) translateX(var(--sway,20px)) scale(1.1)}
+}
+.hero-scroll{
+  position:absolute;bottom:26px;inset-inline-start:50%;transform:translateX(-50%);
+  color:rgba(250,241,227,.55);font-size:.78rem;letter-spacing:.14em;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+[dir="rtl"] .hero-scroll{transform:translateX(50%)}
+.hero-scroll .line{width:1px;height:42px;background:linear-gradient(to bottom,var(--clr-gold),transparent);animation:scroll-hint 2s var(--ease-out) infinite}
+@keyframes scroll-hint{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ============ MARQUEE ============ */
+.marquee{
+  background:var(--clr-brick);color:var(--clr-cream);
+  padding:16px 0;overflow:hidden;position:relative;
+  transform:rotate(-1.2deg) scale(1.02);transform-origin:center;
+  box-shadow:0 10px 30px rgba(150,39,27,.3);
+}
+.marquee-track{
+  display:flex;gap:var(--space-5);width:max-content;
+  animation:marquee 30s linear infinite;
+}
+[dir="rtl"] .marquee-track{animation-name:marquee-rtl}
+.marquee-track span{
+  font-size:1rem;font-weight:500;letter-spacing:.04em;white-space:nowrap;
+  display:flex;align-items:center;gap:var(--space-5);
+}
+.marquee-track .star{color:var(--clr-gold);font-family:var(--font-display-en)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes marquee-rtl{from{transform:translateX(0)}to{transform:translateX(50%)}}
+
+/* ============ SECTIONS ============ */
+.section{padding:var(--space-8) clamp(16px,5vw,64px)}
+.container{max-width:1200px;margin:0 auto}
+.sec-head{max-width:640px;margin-bottom:var(--space-6)}
+.sec-head.center{margin-inline:auto;text-align:center}
+.kicker{
+  display:inline-block;font-size:.82rem;font-weight:600;letter-spacing:.12em;
+  color:var(--clr-brick);text-transform:uppercase;margin-bottom:var(--space-2);
+  padding-bottom:6px;border-bottom:2px solid var(--clr-gold);
+}
+.sec-head h2{font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.2;font-weight:700;margin-bottom:var(--space-2)}
+.sec-head p{color:var(--clr-ink-soft);font-size:1.08rem;font-weight:300}
+
+/* ============ STORY ============ */
+.story{background:var(--clr-cream)}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);align-items:center}
+.story-art{
+  position:relative;border-radius:var(--radius);overflow:hidden;
+  background:linear-gradient(160deg,#2A1C14,#150D09);
+  aspect-ratio:4/4.6;display:grid;place-items:center;
+  box-shadow:var(--shadow-lift);
+}
+.story-art svg{width:78%;height:auto}
+.story-art .glow{
+  position:absolute;bottom:-20%;inset-inline:10%;height:55%;
+  background:radial-gradient(ellipse at center,rgba(217,164,65,.4),transparent 70%);
+  filter:blur(10px);animation:fire-breathe 3.5s ease-in-out infinite;
+}
+@keyframes fire-breathe{0%,100%{opacity:.75;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.12)}}
+.story-body p{color:var(--clr-ink-soft);margin-bottom:var(--space-3);font-size:1.05rem}
+.story-body p strong{color:var(--clr-char);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3);margin-top:var(--space-5)}
+.stat{border-inline-start:3px solid var(--clr-gold);padding-inline-start:var(--space-2)}
+.stat .num{
+  font-family:var(--font-display-en);font-size:clamp(1.8rem,3.5vw,2.6rem);
+  font-weight:700;color:var(--clr-brick);line-height:1.1;font-variant-numeric:tabular-nums;
+}
+.stat .lbl{font-size:.85rem;color:var(--clr-ink-soft);font-weight:500}
+
+/* ============ MENU ============ */
+.menu-sec{background:var(--clr-char);color:var(--clr-cream);position:relative;overflow:hidden}
+.menu-sec::before{
+  content:'';position:absolute;top:-200px;inset-inline-end:-200px;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(192,57,43,.25),transparent 65%);pointer-events:none;
+}
+.menu-sec .sec-head p{color:rgba(250,241,227,.65)}
+.menu-sec .kicker{color:var(--clr-gold)}
+.tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:var(--space-5)}
+.tab{
+  min-height:48px;padding:10px 26px;border-radius:999px;
+  border:1.5px solid rgba(250,241,227,.25);color:rgba(250,241,227,.75);
+  font-size:.95rem;font-weight:500;transition:all .25s var(--ease-out);
+}
+.tab:hover{border-color:var(--clr-gold);color:var(--clr-gold);transform:translateY(-2px)}
+.tab[aria-selected="true"]{background:var(--clr-gold);border-color:var(--clr-gold);color:var(--clr-char);font-weight:600}
+.menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-3);max-width:980px;margin:0 auto}
+.menu-panel{display:none}
+.menu-panel.active{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-3)}
+.dish{
+  background:rgba(250,241,227,.05);
+  border:1px solid rgba(250,241,227,.1);
+  border-radius:var(--radius);padding:var(--space-3);
+  display:flex;gap:var(--space-2);align-items:flex-start;
+  transition:transform .25s var(--ease-out),background .25s,border-color .25s;
+}
+.dish:hover{transform:translateY(-4px);background:rgba(250,241,227,.09);border-color:rgba(217,164,65,.45)}
+.dish-icon{
+  width:52px;height:52px;flex:none;border-radius:14px;
+  background:rgba(217,164,65,.14);display:grid;place-items:center;color:var(--clr-gold);
+}
+.dish-icon svg{width:26px;height:26px}
+.dish-body{flex:1;min-width:0}
+.dish-top{display:flex;align-items:baseline;gap:12px}
+.dish h3{font-size:1.2rem;font-weight:700;color:var(--clr-cream)}
+.dish .dots{flex:1;border-bottom:2px dotted rgba(250,241,227,.25);transform:translateY(-4px)}
+.dish .price{
+  font-family:var(--font-display-en);font-weight:700;color:var(--clr-gold);
+  font-size:1.05rem;white-space:nowrap;font-variant-numeric:tabular-nums;
+}
+.dish p{font-size:.88rem;color:rgba(250,241,227,.6);margin-top:4px;font-weight:300}
+.dish .badge{
+  display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:.05em;
+  background:var(--clr-brick);color:#fff;border-radius:999px;padding:2px 10px;
+  margin-inline-start:8px;vertical-align:middle;
+}
+.menu-cta{text-align:center;margin-top:var(--space-6)}
+.menu-cta .note{font-size:.85rem;color:rgba(250,241,227,.5);margin-top:var(--space-2)}
+
+/* ============ CRAFT (features) ============ */
+.craft-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3)}
+.craft-card{
+  background:#fff;border-radius:var(--radius);padding:var(--space-4);
+  box-shadow:var(--shadow-card);border-top:4px solid var(--clr-gold);
+  transition:transform .3s var(--ease-out),box-shadow .3s var(--ease-out);
+}
+.craft-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift)}
+.craft-card .ico{
+  width:56px;height:56px;border-radius:16px;margin-bottom:var(--space-2);
+  background:linear-gradient(140deg,rgba(192,57,43,.12),rgba(217,164,65,.18));
+  display:grid;place-items:center;color:var(--clr-brick);
+}
+.craft-card .ico svg{width:28px;height:28px}
+.craft-card h3{font-size:1.3rem;font-weight:700;margin-bottom:8px}
+.craft-card p{color:var(--clr-ink-soft);font-size:.95rem;font-weight:300}
+
+/* ============ TESTIMONIALS ============ */
+.quotes{background:var(--clr-cream-deep)}
+.quote-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3)}
+.quote{
+  background:#fff;border-radius:var(--radius);padding:var(--space-4);
+  box-shadow:var(--shadow-card);position:relative;
+  display:flex;flex-direction:column;gap:var(--space-2);
+  transition:transform .3s var(--ease-out);
+}
+.quote:hover{transform:translateY(-4px)}
+.quote .qmark{
+  font-family:var(--font-display-en);font-size:4rem;line-height:1;
+  color:var(--clr-gold);opacity:.6;height:36px;
+}
+.quote p{color:var(--clr-char);font-size:1rem}
+.quote .who{display:flex;align-items:center;gap:12px;margin-top:auto}
+.quote .avatar{
+  width:44px;height:44px;border-radius:50%;flex:none;
+  display:grid;place-items:center;color:#fff;font-weight:700;font-size:1rem;
+}
+.quote .who .nm{font-weight:600;font-size:.92rem}
+.quote .who .rl{font-size:.78rem;color:var(--clr-ink-soft)}
+.quote .starrow{color:var(--clr-gold);letter-spacing:3px;font-size:.9rem}
+
+/* ============ VISIT ============ */
+.visit{background:var(--clr-char);color:var(--clr-cream);position:relative;overflow:hidden}
+.visit::after{
+  content:'';position:absolute;bottom:-260px;inset-inline-start:-160px;width:560px;height:560px;border-radius:50%;
+  background:radial-gradient(circle,rgba(217,164,65,.18),transparent 65%);pointer-events:none;
+}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);align-items:center;position:relative;z-index:1}
+.visit h2{font-size:clamp(2rem,4.5vw,3rem);margin-bottom:var(--space-3)}
+.visit .kicker{color:var(--clr-gold)}
+.info-list{list-style:none;display:flex;flex-direction:column;gap:var(--space-3);margin-top:var(--space-4)}
+.info-list li{display:flex;gap:14px;align-items:flex-start}
+.info-list svg{width:22px;height:22px;color:var(--clr-gold);flex:none;margin-top:4px}
+.info-list .t{font-weight:600;font-size:1rem}
+.info-list .d{font-size:.9rem;color:rgba(250,241,227,.65);font-weight:300}
+.order-card{
+  background:linear-gradient(150deg,rgba(250,241,227,.08),rgba(250,241,227,.03));
+  border:1px solid rgba(217,164,65,.3);border-radius:calc(var(--radius) + 6px);
+  padding:var(--space-5);text-align:center;
+  box-shadow:0 30px 80px rgba(0,0,0,.35);
+}
+.order-card .oc-ico{
+  width:72px;height:72px;margin:0 auto var(--space-3);border-radius:50%;
+  background:rgba(217,164,65,.15);display:grid;place-items:center;color:var(--clr-gold);
+}
+.order-card .oc-ico svg{width:36px;height:36px}
+.order-card h3{font-size:1.7rem;margin-bottom:10px}
+.order-card p{color:rgba(250,241,227,.7);font-size:.95rem;margin-bottom:var(--space-3);font-weight:300}
+.order-card .hint{font-size:.8rem;color:rgba(250,241,227,.45);margin-top:var(--space-2);margin-bottom:0}
+
+/* ============ FOOTER ============ */
+.footer{
+  background:#120B07;color:rgba(250,241,227,.6);
+  padding:var(--space-6) clamp(16px,5vw,64px) var(--space-4);
+}
+.footer-grid{
+  max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;
+  align-items:center;gap:var(--space-3);flex-wrap:wrap;
+}
+.footer .nav-logo{color:var(--clr-cream)}
+.footer-note{font-size:.82rem}
+.footer a:hover{color:var(--clr-gold)}
+
+/* ============ WHATSAPP FAB ============ */
+.wa-fab{
+  position:fixed;bottom:22px;inset-inline-end:22px;z-index:90;
+  width:58px;height:58px;border-radius:50%;
+  background:#25D366;color:#fff;display:grid;place-items:center;
+  box-shadow:0 10px 30px rgba(37,211,102,.45);
+  transition:transform .25s var(--ease-out),box-shadow .25s;
+}
+.wa-fab:hover{transform:translateY(-4px) scale(1.06);box-shadow:0 16px 38px rgba(37,211,102,.55)}
+.wa-fab svg{width:30px;height:30px}
+
+/* ============ REVEAL ANIMATIONS ============ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}
+.reveal-d3{transition-delay:.3s}.reveal-d4{transition-delay:.4s}
+
+/* ============ MOBILE ============ */
+@media (max-width:960px){
+  .hero-inner{grid-template-columns:1fr;gap:var(--space-5);text-align:center}
+  .hero-eyebrow{margin-inline:auto}
+  .hero p.lede{margin-inline:auto}
+  .hero-ctas,.hero-meta{justify-content:center}
+  .hero-art{order:-1;margin-top:var(--space-2)}
+  .pizza-wrap{width:min(280px,62vw)}
+  .story-grid,.visit-grid{grid-template-columns:1fr}
+  .craft-grid,.quote-grid{grid-template-columns:1fr;max-width:520px;margin-inline:auto}
+  .menu-panel.active{grid-template-columns:1fr}
+  .nav-links{
+    position:fixed;inset:0;z-index:105;
+    background:rgba(21,13,9,.97);backdrop-filter:blur(8px);
+    flex-direction:column;justify-content:center;gap:var(--space-4);
+    opacity:0;pointer-events:none;transition:opacity .3s var(--ease-out);
+  }
+  .nav-links.open{opacity:1;pointer-events:auto}
+  .nav-links a{color:var(--clr-cream)!important;font-size:1.4rem}
+  .burger{display:block}
+  .section{padding-block:var(--space-7)}
+  .stats{grid-template-columns:repeat(3,1fr);gap:var(--space-2)}
+}
+@media (max-width:480px){
+  .hero-ctas .btn{width:100%}
+  .stats{grid-template-columns:1fr 1fr}
+}
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+  .ember{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a class="nav-logo" href="#top" aria-label="Lipper Pizza">
+    <svg class="mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <circle cx="24" cy="24" r="21" stroke="#D9A441" stroke-width="2.5"/>
+      <path d="M24 8 L38 36 Q24 42 10 36 Z" fill="#C0392B"/>
+      <circle cx="24" cy="22" r="2.4" fill="#FAF1E3"/>
+      <circle cx="19" cy="29" r="2" fill="#D9A441"/>
+      <circle cx="29" cy="30" r="2" fill="#FAF1E3"/>
+    </svg>
+    <span><span class="ar-t">ليبر بيتزا</span><span class="en-t">Lipper Pizza</span></span>
+  </a>
+  <nav aria-label="Main navigation">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#story"><span class="ar-t">قصتنا</span><span class="en-t">Our Story</span></a></li>
+      <li><a href="#menu"><span class="ar-t">المنيو</span><span class="en-t">Menu</span></a></li>
+      <li><a href="#craft"><span class="ar-t">لماذا ليبر</span><span class="en-t">Why Lipper</span></a></li>
+      <li><a href="#visit"><span class="ar-t">زورونا</span><span class="en-t">Visit Us</span></a></li>
+    </ul>
+  </nav>
+  <div class="nav-actions">
+    <button class="lang-btn" id="langBtn" aria-label="Switch language">EN</button>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-eyebrow reveal visible">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="ar-t">أم درمان · السودان</span><span class="en-t">Omdurman · Sudan</span>
+      </span>
+      <h1>
+        <span class="ar-t">بيتزا من <span class="accent">فرن الحطب</span>،<br>بروح أم درمان</span>
+        <span class="en-t block-t">Wood-fired pizza,<br>with the <span class="accent">soul of Omdurman</span></span>
+      </h1>
+      <p class="lede">
+        <span class="ar-t">عجينة تتخمّر ٤٨ ساعة، صلصة طماطم طازجة، وجبنة تذوب على نار الحطب — نخبزها لك كل يوم على ضفاف النيل.</span>
+        <span class="en-t block-t">48-hour fermented dough, fresh tomato sauce, and cheese melted over real firewood — baked daily on the banks of the Nile.</span>
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://wa.me/249912345678?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A3%D9%86%20%D8%A3%D8%B7%D9%84%D8%A8%20%D8%A8%D9%8A%D8%AA%D8%B2%D8%A7%20%D9%85%D9%86%20%D9%84%D9%8A%D8%A8%D8%B1%20%F0%9F%8D%95" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.82 9.82 0 0 1-1.51-5.26c0-5.44 4.43-9.87 9.89-9.87a9.8 9.8 0 0 1 6.99 2.9 9.8 9.8 0 0 1 2.89 6.98c0 5.45-4.43 9.88-9.88 9.88zm8.41-18.29A11.8 11.8 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.94L.06 24l6.31-1.65a11.9 11.9 0 0 0 5.68 1.44h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.16-3.49-8.4z"/></svg>
+          <span class="ar-t">اطلب عبر واتساب</span><span class="en-t">Order on WhatsApp</span>
+        </a>
+        <a class="btn btn-ghost" href="#menu">
+          <span class="ar-t">تصفح المنيو</span><span class="en-t">Browse the Menu</span>
+        </a>
+      </div>
+      <div class="hero-meta">
+        <div class="item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <span class="ar-t">يومياً ١٢ ظهراً – ١٢ منتصف الليل</span><span class="en-t">Daily 12pm – 12am</span>
+        </div>
+        <div class="item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.3-7-11a7 7 0 0 1 14 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <span class="ar-t">شارع الأربعين، أم درمان</span><span class="en-t">Al-Arbaeen St, Omdurman</span>
+        </div>
+        <div class="item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11l7-8 7 8M5 11h14M7 11v9h10v-9"/></svg>
+          <span class="ar-t">توصيل داخل أم درمان</span><span class="en-t">Delivery across Omdurman</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-art" aria-hidden="true">
+      <div class="pizza-wrap">
+        <div class="pizza-ring"></div>
+        <svg class="pizza-svg" viewBox="0 0 200 200" fill="none">
+          <circle cx="100" cy="100" r="92" fill="#D9A441"/>
+          <circle cx="100" cy="100" r="80" fill="#E8C983"/>
+          <circle cx="100" cy="100" r="76" fill="#C0392B"/>
+          <circle cx="100" cy="100" r="72" fill="#E9D9A0"/>
+          <g fill="#C0392B">
+            <circle cx="76" cy="72" r="10"/><circle cx="124" cy="66" r="9"/>
+            <circle cx="140" cy="108" r="10"/><circle cx="100" cy="104" r="9"/>
+            <circle cx="66" cy="118" r="9"/><circle cx="104" cy="146" r="10"/>
+          </g>
+          <g fill="#4C6B3C">
+            <path d="M88 84c4-6 12-6 14 0-6 2-10 2-14 0z"/>
+            <path d="M118 92c4-6 12-6 14 0-6 2-10 2-14 0z"/>
+            <path d="M82 138c4-6 12-6 14 0-6 2-10 2-14 0z"/>
+            <path d="M126 130c4-6 12-6 14 0-6 2-10 2-14 0z"/>
+            <path d="M96 60c4-6 12-6 14 0-6 2-10 2-14 0z"/>
+          </g>
+          <g stroke="#B9853A" stroke-width="2" stroke-linecap="round" opacity=".7">
+            <path d="M52 52c3 3 3 6 0 9"/><path d="M148 58c3 3 3 6 0 9"/>
+            <path d="M56 142c3 3 3 6 0 9"/><path d="M146 138c3 3 3 6 0 9"/>
+          </g>
+        </svg>
+        <span class="ember" style="--dur:8s;--delay:0s;--sway:24px;width:8px;height:8px;bottom:10%;left:20%"></span>
+        <span class="ember" style="--dur:11s;--delay:2s;--sway:-30px;width:6px;height:6px;bottom:5%;left:60%"></span>
+        <span class="ember" style="--dur:9s;--delay:4s;--sway:16px;width:10px;height:10px;bottom:15%;left:80%"></span>
+        <span class="ember" style="--dur:12s;--delay:1s;--sway:-20px;width:5px;height:5px;bottom:0;left:40%"></span>
+        <span class="ember" style="--dur:10s;--delay:5.5s;--sway:28px;width:7px;height:7px;bottom:8%;left:5%"></span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <span class="ar-t">اكتشف</span><span class="en-t">SCROLL</span>
+    <span class="line"></span>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>
+      <span class="ar-t">طازج من الفرن كل يوم</span><span class="en-t">Fresh from the oven daily</span> <i class="star">✶</i>
+      <span class="ar-t">عجينة تتخمّر ٤٨ ساعة</span><span class="en-t">48-hour fermented dough</span> <i class="star">✶</i>
+      <span class="ar-t">نار حطب حقيقية</span><span class="en-t">Real firewood flame</span> <i class="star">✶</i>
+      <span class="ar-t">مكوّنات محلية طازجة</span><span class="en-t">Fresh local ingredients</span> <i class="star">✶</i>
+      <span class="ar-t">توصيل داخل أم درمان</span><span class="en-t">Delivery in Omdurman</span> <i class="star">✶</i>
+    </span>
+  </div>
+</div>
+
+<!-- ============ STORY ============ -->
+<section class="section story" id="story">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-art reveal" aria-hidden="true">
+        <div class="glow"></div>
+        <svg viewBox="0 0 240 220" fill="none">
+          <path d="M30 200 L30 110 A90 78 0 0 1 210 110 L210 200" stroke="#D9A441" stroke-width="5" stroke-linecap="round"/>
+          <path d="M60 200 L60 124 A60 52 0 0 1 180 124 L180 200" stroke="#C0392B" stroke-width="4" stroke-linecap="round"/>
+          <rect x="60" y="164" width="120" height="36" rx="6" fill="#2A1C14" stroke="#96271B" stroke-width="3"/>
+          <path d="M100 152c-6-10 2-14 0-22 8 4 12 12 8 22h-8z" fill="#D9A441"/>
+          <path d="M120 156c-8-13 3-18 0-28 10 5 15 15 10 28h-10z" fill="#C0392B"/>
+          <path d="M142 152c-6-10 2-14 0-22 8 4 12 12 8 22h-8z" fill="#E8C983"/>
+          <line x1="14" y1="202" x2="226" y2="202" stroke="#D9A441" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="story-body">
+        <span class="kicker reveal"><span class="ar-t">قصتنا</span><span class="en-t">Our Story</span></span>
+        <h2 class="reveal reveal-d1" style="font-size:clamp(2rem,4.5vw,3rem);margin-bottom:var(--space-3)">
+          <span class="ar-t">من قلب أم درمان،<br>إلى قلب الفرن</span>
+          <span class="en-t block-t">From the heart of Omdurman,<br>into the heart of the oven</span>
+        </h2>
+        <p class="reveal reveal-d2">
+          <span class="ar-t">بدأت <strong>ليبر بيتزا</strong> بحلم بسيط: أن تجد في أم درمان بيتزا تُخبز كما تُخبز في نابولي — لكن بروح سودانية. اخترنا الدقيق بعناية، وبنينا فرن الحطب بأيدينا، وتعلمنا أن الصبر هو المكوّن السري.</span>
+          <span class="en-t block-t"><strong>Lipper Pizza</strong> began with a simple dream: pizza in Omdurman baked the way Naples bakes it — but with a Sudanese soul. We chose our flour carefully, built our wood oven by hand, and learned that patience is the secret ingredient.</span>
+        </p>
+        <p class="reveal reveal-d3">
+          <span class="ar-t">كل عجينة عندنا تأخذ وقتها الكامل — <strong>٤٨ ساعة من التخمير البطيء</strong> — قبل أن تلمس النار. والنتيجة؟ أطراف هشّة منفوخة، وقلب طري، ونكهة دخان لا تُنسى.</span>
+          <span class="en-t block-t">Every dough takes its full time — <strong>48 hours of slow fermentation</strong> — before it ever touches the flame. The result? Puffy, blistered edges, a tender center, and a smoky flavor you won't forget.</span>
+        </p>
+        <div class="stats reveal reveal-d4">
+          <div class="stat">
+            <div class="num" data-count="48">0</div>
+            <div class="lbl"><span class="ar-t">ساعة تخمير</span><span class="en-t">Hours of fermentation</span></div>
+          </div>
+          <div class="stat">
+            <div class="num" data-count="400">0</div>
+            <div class="lbl"><span class="ar-t">درجة حرارة الفرن°</span><span class="en-t">°C oven temperature</span></div>
+          </div>
+          <div class="stat">
+            <div class="num" data-count="90">0</div>
+            <div class="lbl"><span class="ar-t">ثانية خَبز فقط</span><span class="en-t">Seconds to bake</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section class="section menu-sec" id="menu">
+  <div class="container">
+    <div class="sec-head center">
+      <span class="kicker reveal"><span class="ar-t">المنيو</span><span class="en-t">The Menu</span></span>
+      <h2 class="reveal reveal-d1"><span class="ar-t">مخبوز على نار هادئة الغضب</span><span class="en-t">Baked over a gentle fury of flame</span></h2>
+      <p class="reveal reveal-d2"><span class="ar-t">الأسعار بالجنيه السوداني. كل بيتزا تُحضّر عند الطلب.</span><span class="en-t">Prices in Sudanese Pounds. Every pizza is made to order.</span></p>
+    </div>
+
+    <div class="tabs reveal" role="tablist" aria-label="Menu categories">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="panel-pizza" id="tab-pizza">
+        <span class="ar-t">البيتزا</span><span class="en-t">Pizzas</span>
+      </button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-sides" id="tab-sides">
+        <span class="ar-t">المقبلات</span><span class="en-t">Sides</span>
+      </button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-drinks" id="tab-drinks">
+        <span class="ar-t">المشروبات</span><span class="en-t">Drinks</span>
+      </button>
+    </div>
+
+    <!-- PIZZAS -->
+    <div class="menu-panel active" id="panel-pizza" role="tabpanel" aria-labelledby="tab-pizza">
+      <article class="dish reveal">
+        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L21 19 Q12 23 3 19 Z"/><circle cx="12" cy="12" r="1" fill="currentColor"/><circle cx="9.5" cy="16" r="1" fill="currentColor"/><circle cx="14.5" cy="16.5" r="1" fill="currentColor"/></svg></div>
+        <div class="dish-body">
+          <div class="dish-top">
+            <h3><span class="ar-t">ليبر سبيشال</span><span class="en-t">Lipper Special</span><span class="badge"><span class="ar-t">الأشهر</span><span class="en-t">Popular</span></span></h3>
+            <span class="dots"></span><span class="price">18,000</span>
+          </div>
+          <p><span class="ar-t">لحم مفروم متبل على الطريقة السودانية، فلفل أخضر، بصل مشوي، وجبنة موزاريلا مدخنة.</span><span class="en-t block-t">Sudanese-spiced minced beef, green pepper, charred onion, and smoked mozzarella.</span></p>
+        </div>
+      </article>
+      <article class="dish reveal reveal-d1">
+        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="9" r="1.2" fill="currentColor"/><circle cx="15" cy="10" r="1.2" fill="currentColor"/><circle cx="11" cy="15" r="1.2" fill="currentColor"/></svg></div>
+        <div class="dish-body">
+          <div class="dish-top">
+            <h3><span class="ar-t">مارغريتا كلاسيك</span><span class="en-t">Classic Margherita</span></h3>
+            <span class="dots"></span><span class="price">12,000</span>
+          </div>
+          <p><span class="ar-t">صلصة طماطم طازجة، موزاريلا، ريحان، وزيت زيتون بكر.</span><span class="en-t block-t">Fresh tomato sauce, mozzarella, basil, and extra-virgin olive oil.</span></p>
+        </div>
+      </article>
+      <article class="dish reveal reveal-d1">
+        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="9.5" r="2"/><circle cx="15" cy="13.5" r="2"/></svg></div>
+        <div class="dish-body">
+          <div class="dish-top">
+            <h3><span class="ar-t">بيبروني ناري</span><span class="en-t">Fiery Pepperoni</span></h3>
+            <span class="dots"></span><span class="price">16,000</span>
+          </div>
+          <p><span class="ar-t">بيبروني بقري، شطة سودانية خفيفة، وعسل حار على الأطراف.</span><span class="en-t block-t">Beef pepperoni, a whisper of Sudanese shatta, hot honey on the crust.</span></p>
+        </div>
+      </article>
+      <article class="dish reveal reveal-d2">
+        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 20 Q4 12 8 7t9-3q3 4-1 9t-8 7z"/><path d="M9 15c2-2 5-5 7-9"/></svg></div>
+        <div class="dish-body">
+          <div class="dish-top">
+            <h3><span class="ar-t">دجاج مشوي بالباربكيو</span><span class="en-t">BBQ Grilled Chicken</span></h3>
+            <span class="dots"></span><span class="price">15,000</span>
+          </div>
+          <p><span class="ar-t">دجاج مشوي على الفحم، صلصة باربكيو مدخنة، بصل أحمر وذرة.</span><span class="en-t block-t">Charcoal-grilled chicken, smoky BBQ sauce, red onion, and corn.</span></p>
+        </div>
+      </article>
+      <article class="dish reveal reveal-d2">
+        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M5.6 5.6l2.1 2.1M3 12h3M18.4 5.6l-2.1 2.1M21 12h-3"/><path d="M7 21a5 5 0 0 1 10 0z"/></svg></div>
+        <div class="dish-body">
+          <div class="dish-top">
+            <h3><span class="ar-t">خضار الفرن</span><span class="en-t">Garden Roast</span></h3>
+            <span class="dots"></span><span class="price">11,000</span>
+          </div>
+          <p><span class="ar-t">فلفل ملون مشوي، فطر، زيتون، طماطم كرزية، وجبنة فيتا.</span><span class="en-t block-t">Fire-roasted peppers, mushrooms, olives, cherry tomatoes, and feta.</span></p>
+        </div>
+      </article>
+      <article class="dish reveal reveal-d3">
+        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15c0-5 4-9 8-9s8 4 8 9"/><path d="M4 15h16M8 19h8"/></svg></div>
+        <div class="dish-body">
+          <div class="dish-top">
+            <h3><span class="ar-t">أربع أجبان</span><span class="en-t">Four Cheese</span></h3>
+            <span class="dots"></span><span class="price">17,000</span>
+          </div>
+          <p><span class="ar-t">موزاريلا، شيدر، جبنة بيضاء سودانية، وبارميزان مع عسل النحل.</span><span class="en-t block-t">Mozzarella, cheddar, Sudanese white cheese, and parmesan with a drizzle of honey.</span></p>
+        </div>
+      </article>
+    </div>
+
+    <!-- SIDES -->
+    <div class="menu-panel" id="panel-sides" role="tabpanel" aria-labelledby="tab-sides" hidden>
+      <article class="dish">
+        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="4" rx="2"/><path d="M6 13v5a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-5"/></svg></div>
+        <div class="dish-body">
+          <div class="dish-top">
+            <h3><span class="ar-t">خبز بالثوم والجبنة</span><span class="en-t">Cheesy Garlic Bread</span></h3>
+            <span class="dots"></span><span class="price">6,000</span>
+          </div>
+          <p><span class="ar-t">من عجينتنا المخمرة، زبدة ثوم، وموزاريلا ذائبة.</span><span class="en-t block-t">Made from our fermented dough, garlic butter, melted mozzarella.</span></p>
+        </div>
+      </article>
+      <article class="dish">
+        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4c-2 4-2 8 0 12M12 3c-2 5-2 10 0 15M16 4c-2 4-2 8 0 12"/><path d="M5 20h14"/></svg></div>
+        <div class="dish-body">
+          <div class="dish-top">
+            <h3><span class="ar-t">أجنحة دجاج حارة</span><span class="en-t">Spicy Chicken Wings</span></h3>
+            <span class="dots"></span><span class="price">9,000</span>
+          </div>
+          <p><span class="ar-t">٨ قطع متبلة بالشطة السودانية، مشوية في فرن الحطب.</span><span class="en-t block-t">8 pieces marinated in Sudanese shatta, roasted in the wood oven.</span></p>
+        </div>
+      </article>
+      <article class="dish">
+        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21l1.5-12h7L17 21z"/><path d="M9 9l1-5M12 9V4M15 9l-1-5"/></svg></div>
+        <div class="dish-body">
+          <div class="dish-top">
+            <h3><span class="ar-t">بطاطس بالروزماري</span><span class="en-t">Rosemary Fries</span></h3>
+            <span class="dots"></span><span class="price">5,000</span>
+          </div>
+          <p><span class="ar-t">مقرمشة، مع ملح البحر وإكليل الجبل وصلصة الثوم.</span><span class="en-t block-t">Crispy, with sea salt, rosemary, and garlic aioli.</span></p>
+        </div>
+      </article>
+      <article class="dish">
+        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M8 12c1.5-2 6.5-2 8 0M9 9.5c1-1 5-1 6 0"/></svg></div>
+        <div class="dish-body">
+          <div class="dish-top">
+            <h3><span class="ar-t">سلطة الموسم</span><span class="en-t">Seasonal Salad</span></h3>
+            <span class="dots"></span><span class="price">5,500</span>
+          </div>
+          <p><span class="ar-t">خضار السوق الطازجة مع صلصة الليمون والزيتون.</span><span class="en-t block-t">Fresh market greens with lemon-olive dressing.</span></p>
+        </div>
+      </article>
+    </div>
+
+    <!-- DRINKS -->
+    <div class="menu-panel" id="panel-drinks" role="tabpanel" aria-labelledby="tab-drinks" hidden>
+      <article class="dish">
+        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l-1 18H9z"/><path d="M8.5 10h7"/></svg></div>
+        <div class="dish-body">
+          <div class="dish-top">
+            <h3><span class="ar-t">كركديه مثلج</span><span class="en-t">Iced Karkadeh</span><span class="badge"><span class="ar-t">سوداني أصيل</span><span class="en-t">Sudanese</span></span></h3>
+            <span class="dots"></span><span class="price">3,000</span>
+          </div>
+          <p><span class="ar-t">كركديه بارد منقوع ببطء مع نعناع طازج — رفيق البيتزا الأمثل.</span><span class="en-t block-t">Slow-steeped cold hibiscus with fresh mint — pizza's perfect companion.</span></p>
+        </div>
+      </article>
+      <article class="dish">
+        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v3a3 3 0 0 1-6 0z"/><path d="M7 6h10l-1.2 13a2 2 0 0 1-2 1.8H10.2a2 2 0 0 1-2-1.8z"/></svg></div>
+        <div class="dish-body">
+          <div class="dish-top">
+            <h3><span class="ar-t">عصير مانجو طازج</span><span class="en-t">Fresh Mango Juice</span></h3>
+            <span class="dots"></span><span class="price">4,000</span>
+          </div>
+          <p><span class="ar-t">مانجو سوداني معصور طازجاً كل يوم.</span><span class="en-t block-t">Sudanese mango, freshly pressed daily.</span></p>
+        </div>
+      </article>
+      <article class="dish">
+        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h4M12 2v4"/><rect x="7" y="6" width="10" height="16" rx="3"/></svg></div>
+        <div class="dish-body">
+          <div class="dish-top">
+            <h3><span class="ar-t">مشروبات غازية</span><span class="en-t">Soft Drinks</span></h3>
+            <span class="dots"></span><span class="price">2,000</span>
+          </div>
+          <p><span class="ar-t">كولا، سبرايت، ميرندا — مثلجة.</span><span class="en-t block-t">Cola, Sprite, Mirinda — ice cold.</span></p>
+        </div>
+      </article>
+      <article class="dish">
+        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11z"/></svg></div>
+        <div class="dish-body">
+          <div class="dish-top">
+            <h3><span class="ar-t">مياه معدنية</span><span class="en-t">Mineral Water</span></h3>
+            <span class="dots"></span><span class="price">1,000</span>
+          </div>
+          <p><span class="ar-t">باردة أو بحرارة الغرفة.</span><span class="en-t block-t">Chilled or room temperature.</span></p>
+        </div>
+      </article>
+    </div>
+
+    <div class="menu-cta reveal">
+      <a class="btn btn-primary" href="https://wa.me/249912345678?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A3%D9%86%20%D8%A3%D8%B7%D9%84%D8%A8%20%D9%85%D9%86%20%D9%84%D9%8A%D8%A8%D8%B1%20%D8%A8%D9%8A%D8%AA%D8%B2%D8%A7" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.82 9.82 0 0 1-1.51-5.26c0-5.44 4.43-9.87 9.89-9.87a9.8 9.8 0 0 1 6.99 2.9 9.8 9.8 0 0 1 2.89 6.98c0 5.45-4.43 9.88-9.88 9.88zm8.41-18.29A11.8 11.8 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.94L.06 24l6.31-1.65a11.9 11.9 0 0 0 5.68 1.44h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.16-3.49-8.4z"/></svg>
+        <span class="ar-t">اطلب الآن عبر واتساب</span><span class="en-t">Order Now on WhatsApp</span>
+      </a>
+      <p class="note"><span class="ar-t">الأسعار قابلة للتغيير حسب السوق — تأكد عند الطلب.</span><span class="en-t">Prices may change with the market — confirm when ordering.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CRAFT ============ -->
+<section class="section" id="craft">
+  <div class="container">
+    <div class="sec-head center">
+      <span class="kicker reveal"><span class="ar-t">لماذا ليبر</span><span class="en-t">Why Lipper</span></span>
+      <h2 class="reveal reveal-d1"><span class="ar-t">التفاصيل التي تتذوقها</span><span class="en-t">Details you can taste</span></h2>
+    </div>
+    <div class="craft-grid">
+      <div class="craft-card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <h3><span class="ar-t">عجينة الـ٤٨ ساعة</span><span class="en-t">The 48-Hour Dough</span></h3>
+        <p><span class="ar-t">تخمير بطيء وبارد يمنح العجينة نكهة عميقة وقواماً خفيفاً يسهل هضمه. لا نستعجل أبداً.</span><span class="en-t block-t">Slow, cold fermentation gives the dough deep flavor and a light, digestible texture. We never rush it.</span></p>
+      </div>
+      <div class="craft-card reveal reveal-d1">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c4 5 7 8 7 13a7 7 0 0 1-14 0c0-5 3-8 7-13z"/><path d="M12 12c1.5 2 2.5 3.2 2.5 5a2.5 2.5 0 0 1-5 0c0-1.8 1-3 2.5-5z"/></svg></div>
+        <h3><span class="ar-t">نار الحطب الحقيقية</span><span class="en-t">Real Wood Fire</span></h3>
+        <p><span class="ar-t">فرننا يصل إلى ٤٠٠ درجة مئوية، فتنضج البيتزا في ٩٠ ثانية فقط — أطراف منتفخة ونكهة مدخنة أصيلة.</span><span class="en-t block-t">Our oven hits 400°C, baking each pizza in just 90 seconds — puffed edges and true smoky character.</span></p>
+      </div>
+      <div class="craft-card reveal reveal-d2">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.3-7-11a7 7 0 0 1 14 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <h3><span class="ar-t">من سوق أم درمان</span><span class="en-t">From Omdurman's Markets</span></h3>
+        <p><span class="ar-t">طماطمنا وخضارنا وجبنتنا البيضاء من مزارعين وباعة محليين نعرفهم بالاسم. طازج كل صباح.</span><span class="en-t block-t">Our tomatoes, greens, and white cheese come from local farmers and vendors we know by name. Fresh every morning.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="section quotes">
+  <div class="container">
+    <div class="sec-head center">
+      <span class="kicker reveal"><span class="ar-t">آراء زبائننا</span><span class="en-t">What People Say</span></span>
+      <h2 class="reveal reveal-d1"><span class="ar-t">كلام من القلب</span><span class="en-t">Words from the heart</span></h2>
+    </div>
+    <div class="quote-grid">
+      <figure class="quote reveal">
+        <div class="qmark" aria-hidden="true">”</div>
+        <div class="starrow" aria-label="5 stars">★★★★★</div>
+        <p><span class="ar-t">أول مرة أتذوق بيتزا بهذا المستوى في أم درمان. العجينة نفسها لها طعم — مش مجرد قاعدة للجبنة.</span><span class="en-t block-t">First time I taste pizza at this level in Omdurman. The dough itself has flavor — not just a base for cheese.</span></p>
+        <figcaption class="who">
+          <span class="avatar" style="background:var(--clr-brick)">م</span>
+          <span><span class="nm"><span class="ar-t">محمد الأمين</span><span class="en-t">Mohamed Al-Amin</span></span><br><span class="rl"><span class="ar-t">من حي العباسية</span><span class="en-t">Al-Abbasiya district</span></span></span>
+        </figcaption>
+      </figure>
+      <figure class="quote reveal reveal-d1">
+        <div class="qmark" aria-hidden="true">”</div>
+        <div class="starrow" aria-label="5 stars">★★★★★</div>
+        <p><span class="ar-t">الكركديه المثلج مع بيتزا ليبر سبيشال؟ توليفة ما كنت أتخيلها. صارت عادة كل خميس مع العائلة.</span><span class="en-t block-t">Iced karkadeh with the Lipper Special? A combination I never imagined. Now it's every Thursday with the family.</span></p>
+        <figcaption class="who">
+          <span class="avatar" style="background:var(--clr-gold)">س</span>
+          <span><span class="nm"><span class="ar-t">سارة عثمان</span><span class="en-t">Sara Osman</span></span><br><span class="rl"><span class="ar-t">من الملازمين</span><span class="en-t">Al-Mulazmin district</span></span></span>
+        </figcaption>
+      </figure>
+      <figure class="quote reveal reveal-d2">
+        <div class="qmark" aria-hidden="true">”</div>
+        <div class="starrow" aria-label="5 stars">★★★★★</div>
+        <p><span class="ar-t">الطلب عبر واتساب سهل جداً والتوصيل وصل حار من الفرن. الأطراف المنفوخة دي حكاية تانية.</span><span class="en-t block-t">Ordering on WhatsApp is so easy and delivery arrived hot from the oven. Those puffy edges are something else.</span></p>
+        <figcaption class="who">
+          <span class="avatar" style="background:var(--clr-basil)">ع</span>
+          <span><span class="nm"><span class="ar-t">عبدالله خالد</span><span class="en-t">Abdallah Khalid</span></span><br><span class="rl"><span class="ar-t">من ود نوباوي</span><span class="en-t">Wad Nubawi district</span></span></span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VISIT ============ -->
+<section class="section visit" id="visit">
+  <div class="container">
+    <div class="visit-grid">
+      <div>
+        <span class="kicker reveal"><span class="ar-t">زورونا</span><span class="en-t">Visit Us</span></span>
+        <h2 class="reveal reveal-d1"><span class="ar-t">الفرن ولّع،<br>والنيل قريب</span><span class="en-t block-t">The oven is lit,<br>and the Nile is near</span></h2>
+        <ul class="info-list">
+          <li class="reveal reveal-d2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.3-7-11a7 7 0 0 1 14 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <div><div class="t"><span class="ar-t">العنوان</span><span class="en-t">Address</span></div>
+            <div class="d"><span class="ar-t">شارع الأربعين، أم درمان، السودان</span><span class="en-t">Al-Arbaeen Street, Omdurman, Sudan</span></div></div>
+          </li>
+          <li class="reveal reveal-d3">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <div><div class="t"><span class="ar-t">ساعات العمل</span><span class="en-t">Opening Hours</span></div>
+            <div class="d"><span class="ar-t">يومياً من ١٢ ظهراً حتى ١٢ منتصف الليل</span><span class="en-t">Daily from 12pm to 12am</span></div></div>
+          </li>
+          <li class="reveal reveal-d4">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg>
+            <div><div class="t"><span class="ar-t">للطلب والتوصيل</span><span class="en-t">Order & Delivery</span></div>
+            <div class="d" dir="ltr">+249 91 234 5678</div></div>
+          </li>
+        </ul>
+      </div>
+      <div class="order-card reveal reveal-d2">
+        <div class="oc-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L21 19 Q12 23 3 19 Z"/><circle cx="12" cy="12" r="1" fill="currentColor"/><circle cx="9.5" cy="16" r="1" fill="currentColor"/><circle cx="14.5" cy="16.5" r="1" fill="currentColor"/></svg>
+        </div>
+        <h3><span class="ar-t">جوعان؟ البيتزا في الفرن خلال دقائق</span><span class="en-t">Hungry? Your pizza hits the oven in minutes</span></h3>
+        <p><span class="ar-t">أرسل طلبك عبر واتساب وسنؤكده فوراً. التوصيل داخل أم درمان أو استلام من المحل.</span><span class="en-t block-t">Send your order on WhatsApp and we'll confirm right away. Delivery across Omdurman, or pick up in store.</span></p>
+        <a class="btn btn-primary" href="https://wa.me/249912345678?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A3%D9%86%20%D8%A3%D8%B7%D9%84%D8%A8%20%D9%85%D9%86%20%D9%84%D9%8A%D8%A8%D8%B1%20%D8%A8%D9%8A%D8%AA%D8%B2%D8%A7" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.82 9.82 0 0 1-1.51-5.26c0-5.44 4.43-9.87 9.89-9.87a9.8 9.8 0 0 1 6.99 2.9 9.8 9.8 0 0 1 2.89 6.98c0 5.45-4.43 9.88-9.88 9.88zm8.41-18.29A11.8 11.8 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.94L.06 24l6.31-1.65a11.9 11.9 0 0 0 5.68 1.44h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.16-3.49-8.4z"/></svg>
+          <span class="ar-t">اطلب عبر واتساب</span><span class="en-t">Order on WhatsApp</span>
+        </a>
+        <p class="hint"><span class="ar-t">متوسط وقت التحضير: ٢٠–٣٠ دقيقة</span><span class="en-t">Average preparation time: 20–30 minutes</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <a class="nav-logo" href="#top" aria-label="Lipper Pizza">
+      <svg class="mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <circle cx="24" cy="24" r="21" stroke="#D9A441" stroke-width="2.5"/>
+        <path d="M24 8 L38 36 Q24 42 10 36 Z" fill="#C0392B"/>
+        <circle cx="24" cy="22" r="2.4" fill="#FAF1E3"/>
+        <circle cx="19" cy="29" r="2" fill="#D9A441"/>
+        <circle cx="29" cy="30" r="2" fill="#FAF1E3"/>
+      </svg>
+      <span><span class="ar-t">ليبر بيتزا</span><span class="en-t">Lipper Pizza</span></span>
+    </a>
+    <p class="footer-note">
+      <span class="ar-t">© ٢٠٢٦ ليبر بيتزا — أم درمان، السودان. صُنع بحب وعلى نار هادئة.</span>
+      <span class="en-t">© 2026 Lipper Pizza — Omdurman, Sudan. Made with love, over a gentle flame.</span>
+    </p>
+  </div>
+</footer>
+
+<!-- ============ WHATSAPP FAB ============ -->
+<a class="wa-fab" href="https://wa.me/249912345678?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A3%D9%86%20%D8%A3%D8%B7%D9%84%D8%A8%20%D9%85%D9%86%20%D9%84%D9%8A%D8%A8%D8%B1%20%D8%A8%D9%8A%D8%AA%D8%B2%D8%A7" target="_blank" rel="noopener" aria-label="Order on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.9 1.22 3.1.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12.05 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.82 9.82 0 0 1-1.51-5.26c0-5.44 4.43-9.87 9.89-9.87a9.8 9.8 0 0 1 6.99 2.9 9.8 9.8 0 0 1 2.89 6.98c0 5.45-4.43 9.88-9.88 9.88zm8.41-18.29A11.8 11.8 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.94L.06 24l6.31-1.65a11.9 11.9 0 0 0 5.68 1.44h.01c6.55 0 11.89-5.34 11.89-11.89 0-3.18-1.24-6.16-3.49-8.4z"/></svg>
+</a>
+
+<script>
+(function(){
+  'use strict';
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- Language toggle ---- */
+  var langBtn = document.getElementById('langBtn');
+  var html = document.documentElement;
+  function setLang(lang){
+    if(lang === 'en'){
+      document.body.classList.add('lang-en');
+      html.lang = 'en'; html.dir = 'ltr';
+      langBtn.textContent = 'ع';
+    }else{
+      document.body.classList.remove('lang-en');
+      html.lang = 'ar'; html.dir = 'rtl';
+      langBtn.textContent = 'EN';
+    }
+    try{ localStorage.setItem('lipper-lang', lang); }catch(e){}
+  }
+  langBtn.addEventListener('click', function(){
+    setLang(document.body.classList.contains('lang-en') ? 'ar' : 'en');
+  });
+  try{
+    var saved = localStorage.getItem('lipper-lang');
+    if(saved === 'en') setLang('en');
+  }catch(e){}
+
+  /* ---- Nav scroll state ---- */
+  var nav = document.getElementById('nav');
+  var ticking = false;
+  function onScroll(){
+    if(!ticking){
+      requestAnimationFrame(function(){
+        nav.classList.toggle('scrolled', window.scrollY > 40);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* ---- Mobile menu ---- */
+  var burger = document.getElementById('burger');
+  var navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', function(){
+    var open = navLinks.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  navLinks.addEventListener('click', function(e){
+    if(e.target.closest('a')){
+      navLinks.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded','false');
+      document.body.style.overflow = '';
+    }
+  });
+
+  /* ---- Menu tabs ---- */
+  var tabs = document.querySelectorAll('.tab');
+  var panels = document.querySelectorAll('.menu-panel');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      tabs.forEach(function(t){ t.setAttribute('aria-selected','false'); });
+      tab.setAttribute('aria-selected','true');
+      panels.forEach(function(p){
+        var active = p.id === tab.getAttribute('aria-controls');
+        p.classList.toggle('active', active);
+        p.hidden = !active;
+      });
+    });
+  });
+
+  /* ---- Scroll reveal ---- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reduceMotion){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    },{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  }else{
+    revealEls.forEach(function(el){ el.classList.add('visible'); });
+  }
+
+  /* ---- Stat counters ---- */
+  var counters = document.querySelectorAll('[data-count]');
+  function animateCount(el){
+    var target = parseInt(el.getAttribute('data-count'),10);
+    if(reduceMotion){ el.textContent = target; return; }
+    var dur = 1400, start = null;
+    function step(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased);
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if('IntersectionObserver' in window){
+    var cio = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          animateCount(entry.target);
+          cio.unobserve(entry.target);
+        }
+      });
+    },{threshold:.6});
+    counters.forEach(function(el){ cio.observe(el); });
+  }else{
+    counters.forEach(function(el){ el.textContent = el.getAttribute('data-count'); });
+  }
+
+  /* ---- Duplicate marquee content for seamless loop ---- */
+  var track = document.getElementById('marqueeTrack');
+  if(track) track.innerHTML += track.innerHTML;
+})();
+</script>
+</body>
+</html>
