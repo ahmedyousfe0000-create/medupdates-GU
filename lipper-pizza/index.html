@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ليبر بيتزا — Liper Pizza | أم درمان، السودان</title>
-<meta name="description" content="ليبر بيتزا — بيتزا فرن حطب من قلب أم درمان. عجينة تتخمّر ٤٨ ساعة، مكوّنات طازجة، وطلب مباشر عبر واتساب.">
+<meta name="description" content="ليبر بيتزا — أكثر من بيتزا، نحن نشارككم الحب. مكوّنات طازجة ونكهة أصيلة من قلب أم درمان، وطلب مباشر عبر واتساب.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -129,19 +129,29 @@ body.lang-en h1,body.lang-en h2,body.lang-en h3,body.lang-en .display{font-famil
 .hero{
   position:relative;min-height:100dvh;
   display:flex;align-items:center;
-  background:url('assets/hero-pizza.jpg') center 42%/cover no-repeat var(--clr-char);
+  background:var(--clr-char);
   color:var(--clr-cream);
   padding:120px clamp(16px,5vw,64px) var(--space-7);
   overflow:hidden;
 }
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-bg img{
+  width:100%;height:100%;object-fit:cover;object-position:center 42%;
+  animation:hero-kenburns 32s ease-in-out infinite alternate;
+  will-change:transform;
+}
+@keyframes hero-kenburns{
+  from{transform:scale(1) translate(0,0)}
+  to{transform:scale(1.12) translate(-1.5%,-1%)}
+}
 .hero::before{
-  content:'';position:absolute;inset:0;pointer-events:none;
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
   background:
     radial-gradient(900px 500px at 15% -10%,rgba(196,42,128,.30),transparent 55%),
     linear-gradient(180deg,rgba(27,18,24,.88) 0%,rgba(27,18,24,.42) 42%,rgba(21,10,18,.55) 74%,#150A12 100%);
 }
 .hero::after{
-  content:'';position:absolute;inset:0;pointer-events:none;
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
   background:linear-gradient(to left,rgba(21,10,18,.82) 8%,rgba(21,10,18,.45) 45%,rgba(21,10,18,0) 78%);
 }
 html[dir="ltr"] .hero::after{
@@ -150,8 +160,9 @@ html[dir="ltr"] .hero::after{
 .hero-inner{
   max-width:1200px;margin:0 auto;width:100%;
   display:grid;grid-template-columns:minmax(0,720px);justify-content:start;
-  position:relative;z-index:1;
+  position:relative;z-index:2;
 }
+.hero-scroll{z-index:2}
 .hero h1,.hero p.lede,.hero-meta{text-shadow:0 2px 18px rgba(21,10,18,.55)}
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:10px;
@@ -235,26 +246,18 @@ body.lang-en .hero h1 .accent::after{--underline-origin:left}
 .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);align-items:center}
 .story-art{
   position:relative;border-radius:var(--radius);overflow:hidden;
-  background:linear-gradient(160deg,#281826,#150A12);
-  aspect-ratio:4/4.6;display:grid;place-items:center;
   box-shadow:var(--shadow-lift);
+  border-bottom:5px solid var(--clr-brick);
 }
-.story-art svg{width:78%;height:auto}
-.story-art .glow{
-  position:absolute;bottom:-20%;inset-inline:10%;height:55%;
-  background:radial-gradient(ellipse at center,rgba(217,164,65,.4),transparent 70%);
-  filter:blur(10px);animation:fire-breathe 3.5s ease-in-out infinite;
-}
-@keyframes fire-breathe{0%,100%{opacity:.75;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.12)}}
+.story-art img{width:100%;height:100%;object-fit:cover;display:block}
 .story-body p{color:var(--clr-ink-soft);margin-bottom:var(--space-3);font-size:1.05rem}
 .story-body p strong{color:var(--clr-char);font-weight:600}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3);margin-top:var(--space-5)}
-.stat{border-inline-start:3px solid var(--clr-gold);padding-inline-start:var(--space-2)}
-.stat .num{
-  font-family:var(--font-display-en);font-size:clamp(1.8rem,3.5vw,2.6rem);
-  font-weight:700;color:var(--clr-brick);line-height:1.1;font-variant-numeric:tabular-nums;
+.story-tagline{
+  font-family:var(--font-display-ar);font-size:1.35rem;font-weight:700;
+  color:var(--clr-brick);margin-top:var(--space-4);
+  border-inline-start:4px solid var(--clr-gold);padding-inline-start:var(--space-2);
 }
-.stat .lbl{font-size:.85rem;color:var(--clr-ink-soft);font-weight:500}
+body.lang-en .story-tagline{font-family:var(--font-display-en)}
 
 /* ============ MENU ============ */
 .menu-sec{background:var(--clr-char);color:var(--clr-cream);position:relative;overflow:hidden}
@@ -466,6 +469,9 @@ body.lang-en .hero h1 .accent::after{--underline-origin:left}
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true">
+    <img src="assets/hero-pizza.jpg" alt="" fetchpriority="high">
+  </div>
   <div class="hero-inner">
     <div>
       <span class="hero-eyebrow reveal visible">
@@ -473,12 +479,12 @@ body.lang-en .hero h1 .accent::after{--underline-origin:left}
         <span class="ar-t">أم درمان · السودان</span><span class="en-t">Omdurman · Sudan</span>
       </span>
       <h1>
-        <span class="ar-t">بيتزا من <span class="accent">فرن الحطب</span>،<br>بروح أم درمان</span>
-        <span class="en-t block-t">Wood-fired pizza,<br>with the <span class="accent">soul of Omdurman</span></span>
+        <span class="ar-t">أكثر من بيتزا —<br>نحن <span class="accent">نشارككم الحب</span></span>
+        <span class="en-t block-t">More Than Pizza —<br>We're <span class="accent">Sharing Love</span></span>
       </h1>
       <p class="lede">
-        <span class="ar-t">عجينة تتخمّر ٤٨ ساعة، صلصة طماطم طازجة، وجبنة تذوب على نار الحطب — نخبزها لك كل يوم على ضفاف النيل.</span>
-        <span class="en-t block-t">48-hour fermented dough, fresh tomato sauce, and cheese melted over real firewood — baked daily on the banks of the Nile.</span>
+        <span class="ar-t">مكوّنات طازجة تُنتقى كل صباح، وعجينة تُصنع بحب، ونكهة أصيلة تجمع الناس حول طاولة واحدة — من قلب أم درمان.</span>
+        <span class="en-t block-t">Fresh ingredients picked every morning, dough crafted with love, and an authentic taste that brings people together — from the heart of Omdurman.</span>
       </p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="https://wa.me/249912345678?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A3%D9%86%20%D8%A3%D8%B7%D9%84%D8%A8%20%D8%A8%D9%8A%D8%AA%D8%B2%D8%A7%20%D9%85%D9%86%20%D9%84%D9%8A%D8%A8%D8%B1%20%F0%9F%8D%95" target="_blank" rel="noopener">
@@ -517,8 +523,8 @@ body.lang-en .hero h1 .accent::after{--underline-origin:left}
   <div class="marquee-track" id="marqueeTrack">
     <span>
       <span class="ar-t">طازج من الفرن كل يوم</span><span class="en-t">Fresh from the oven daily</span> <i class="star">✶</i>
-      <span class="ar-t">عجينة تتخمّر ٤٨ ساعة</span><span class="en-t">48-hour fermented dough</span> <i class="star">✶</i>
-      <span class="ar-t">نار حطب حقيقية</span><span class="en-t">Real firewood flame</span> <i class="star">✶</i>
+      <span class="ar-t">عجينة طازجة كل يوم</span><span class="en-t">Fresh dough every day</span> <i class="star">✶</i>
+      <span class="ar-t">جودة في كل تفصيلة</span><span class="en-t">Quality in every detail</span> <i class="star">✶</i>
       <span class="ar-t">مكوّنات محلية طازجة</span><span class="en-t">Fresh local ingredients</span> <i class="star">✶</i>
       <span class="ar-t">توصيل داخل أم درمان</span><span class="en-t">Delivery in Omdurman</span> <i class="star">✶</i>
     </span>
@@ -529,46 +535,27 @@ body.lang-en .hero h1 .accent::after{--underline-origin:left}
 <section class="section story" id="story">
   <div class="container">
     <div class="story-grid">
-      <div class="story-art reveal" aria-hidden="true">
-        <div class="glow"></div>
-        <svg viewBox="0 0 240 220" fill="none">
-          <path d="M30 200 L30 110 A90 78 0 0 1 210 110 L210 200" stroke="#D9A441" stroke-width="5" stroke-linecap="round"/>
-          <path d="M60 200 L60 124 A60 52 0 0 1 180 124 L180 200" stroke="#C0392B" stroke-width="4" stroke-linecap="round"/>
-          <rect x="60" y="164" width="120" height="36" rx="6" fill="#281826" stroke="#96271B" stroke-width="3"/>
-          <path d="M100 152c-6-10 2-14 0-22 8 4 12 12 8 22h-8z" fill="#D9A441"/>
-          <path d="M120 156c-8-13 3-18 0-28 10 5 15 15 10 28h-10z" fill="#C0392B"/>
-          <path d="M142 152c-6-10 2-14 0-22 8 4 12 12 8 22h-8z" fill="#E8C983"/>
-          <line x1="14" y1="202" x2="226" y2="202" stroke="#D9A441" stroke-width="5" stroke-linecap="round"/>
-        </svg>
+      <div class="story-art reveal">
+        <img src="assets/liper-storefront.jpg" alt="فريق ليبر بيتزا أمام المطعم في أم درمان — Liper Pizza team in front of the restaurant in Omdurman" loading="lazy">
       </div>
       <div class="story-body">
         <span class="kicker reveal"><span class="ar-t">قصتنا</span><span class="en-t">Our Story</span></span>
         <h2 class="reveal reveal-d1" style="font-size:clamp(2rem,4.5vw,3rem);margin-bottom:var(--space-3)">
-          <span class="ar-t">من قلب أم درمان،<br>إلى قلب الفرن</span>
-          <span class="en-t block-t">From the heart of Omdurman,<br>into the heart of the oven</span>
+          <span class="ar-t">من قلب أم درمان،<br>بطعم يعشقه الجميع</span>
+          <span class="en-t block-t">From the heart of Omdurman,<br>with a taste everyone loves</span>
         </h2>
         <p class="reveal reveal-d2">
-          <span class="ar-t">بدأت <strong>ليبر بيتزا</strong> بحلم بسيط: أن تجد في أم درمان بيتزا تُخبز كما تُخبز في نابولي — لكن بروح سودانية. اخترنا الدقيق بعناية، وبنينا فرن الحطب بأيدينا، وتعلمنا أن الصبر هو المكوّن السري.</span>
-          <span class="en-t block-t"><strong>Liper Pizza</strong> began with a simple dream: pizza in Omdurman baked the way Naples bakes it — but with a Sudanese soul. We chose our flour carefully, built our wood oven by hand, and learned that patience is the secret ingredient.</span>
+          <span class="ar-t">من قلب أم درمان، بدأت رحلة <strong>ليبر بيتزا</strong> بشغفٍ لصناعة بيتزا تجمع بين الجودة والنكهة الأصيلة والمكوّنات الطازجة. منذ اليوم الأول، كانت رؤيتنا أن نصنع تجربة طعام لا تُنسى، يستمتع فيها كل زبون بطعامٍ لذيذ وخدمةٍ استثنائية.</span>
+          <span class="en-t block-t">From the heart of Omdurman, the journey of <strong>Liper Pizza</strong> began with a passion for crafting pizza that combines quality, authentic flavor, and fresh ingredients. From day one, our vision has been to create a memorable dining experience where every customer enjoys delicious food and exceptional service.</span>
         </p>
         <p class="reveal reveal-d3">
-          <span class="ar-t">كل عجينة عندنا تأخذ وقتها الكامل — <strong>٤٨ ساعة من التخمير البطيء</strong> — قبل أن تلمس النار. والنتيجة؟ أطراف هشّة منفوخة، وقلب طري، ونكهة دخان لا تُنسى.</span>
-          <span class="en-t block-t">Every dough takes its full time — <strong>48 hours of slow fermentation</strong> — before it ever touches the flame. The result? Puffy, blistered edges, a tender center, and a smoky flavor you won't forget.</span>
+          <span class="ar-t">وبفضل التزامنا بالجودة والابتكار المستمر والاهتمام بأدق التفاصيل، أصبحت <strong>ليبر بيتزا</strong> وجهةً مفضلة لعشاق البيتزا في أم درمان وفي السودان كله. ونواصل النمو بتقديم نكهات جديدة، وتطوير خدمتنا، وصناعة تجارب تحوّل كل زيارة إلى ذكرى باقية.</span>
+          <span class="en-t block-t">Through our commitment to quality, continuous innovation, and attention to every detail, <strong>Liper Pizza</strong> has become a favorite destination for pizza lovers in Omdurman and across Sudan. We continue to grow by introducing new flavors, improving our service, and creating experiences that turn every visit into a lasting memory.</span>
         </p>
-        <div class="stats reveal reveal-d4">
-          <div class="stat">
-            <div class="num" data-count="48">0</div>
-            <div class="lbl"><span class="ar-t">ساعة تخمير</span><span class="en-t">Hours of fermentation</span></div>
-          </div>
-          <div class="stat">
-            <div class="num" data-count="400">0</div>
-            <div class="lbl"><span class="ar-t">درجة حرارة الفرن°</span><span class="en-t">°C oven temperature</span></div>
-          </div>
-          <div class="stat">
-            <div class="num" data-count="90">0</div>
-            <div class="lbl"><span class="ar-t">ثانية خَبز فقط</span><span class="en-t">Seconds to bake</span></div>
-          </div>
-        </div>
+        <p class="story-tagline reveal reveal-d4">
+          <span class="ar-t">ليبر بيتزا... من قلب أم درمان، بطعم يعشقه الجميع.</span>
+          <span class="en-t block-t">Liper Pizza... From the Heart of Omdurman, with a Taste Everyone Loves.</span>
+        </p>
       </div>
     </div>
   </div>
@@ -579,7 +566,7 @@ body.lang-en .hero h1 .accent::after{--underline-origin:left}
   <div class="container">
     <div class="sec-head center">
       <span class="kicker reveal"><span class="ar-t">المنيو</span><span class="en-t">The Menu</span></span>
-      <h2 class="reveal reveal-d1"><span class="ar-t">مخبوز على نار هادئة الغضب</span><span class="en-t">Baked over a gentle fury of flame</span></h2>
+      <h2 class="reveal reveal-d1"><span class="ar-t">صُنعت بحب... لتُعشق</span><span class="en-t">Crafted with love, made to be loved</span></h2>
       <p class="reveal reveal-d2"><span class="ar-t">الأسعار بالجنيه السوداني. كل بيتزا تُحضّر عند الطلب.</span><span class="en-t">Prices in Sudanese Pounds. Every pizza is made to order.</span></p>
     </div>
 
@@ -634,7 +621,7 @@ body.lang-en .hero h1 .accent::after{--underline-origin:left}
             <h3><span class="ar-t">دجاج مشوي بالباربكيو</span><span class="en-t">BBQ Grilled Chicken</span></h3>
             <span class="dots"></span><span class="price">15,000</span>
           </div>
-          <p><span class="ar-t">دجاج مشوي على الفحم، صلصة باربكيو مدخنة، بصل أحمر وذرة.</span><span class="en-t block-t">Charcoal-grilled chicken, smoky BBQ sauce, red onion, and corn.</span></p>
+          <p><span class="ar-t">دجاج مشوي متبل، صلصة باربكيو مدخنة، بصل أحمر وذرة.</span><span class="en-t block-t">Marinated grilled chicken, smoky BBQ sauce, red onion, and corn.</span></p>
         </div>
       </article>
       <article class="dish reveal reveal-d2">
@@ -644,7 +631,7 @@ body.lang-en .hero h1 .accent::after{--underline-origin:left}
             <h3><span class="ar-t">خضار الفرن</span><span class="en-t">Garden Roast</span></h3>
             <span class="dots"></span><span class="price">11,000</span>
           </div>
-          <p><span class="ar-t">فلفل ملون مشوي، فطر، زيتون، طماطم كرزية، وجبنة فيتا.</span><span class="en-t block-t">Fire-roasted peppers, mushrooms, olives, cherry tomatoes, and feta.</span></p>
+          <p><span class="ar-t">فلفل ملون مشوي، فطر، زيتون، طماطم كرزية، وجبنة فيتا.</span><span class="en-t block-t">Oven-roasted peppers, mushrooms, olives, cherry tomatoes, and feta.</span></p>
         </div>
       </article>
       <article class="dish reveal reveal-d3">
@@ -668,7 +655,7 @@ body.lang-en .hero h1 .accent::after{--underline-origin:left}
             <h3><span class="ar-t">خبز بالثوم والجبنة</span><span class="en-t">Cheesy Garlic Bread</span></h3>
             <span class="dots"></span><span class="price">6,000</span>
           </div>
-          <p><span class="ar-t">من عجينتنا المخمرة، زبدة ثوم، وموزاريلا ذائبة.</span><span class="en-t block-t">Made from our fermented dough, garlic butter, melted mozzarella.</span></p>
+          <p><span class="ar-t">من عجينتنا الطازجة، زبدة ثوم، وموزاريلا ذائبة.</span><span class="en-t block-t">Made from our fresh dough, garlic butter, melted mozzarella.</span></p>
         </div>
       </article>
       <article class="dish">
@@ -678,7 +665,7 @@ body.lang-en .hero h1 .accent::after{--underline-origin:left}
             <h3><span class="ar-t">أجنحة دجاج حارة</span><span class="en-t">Spicy Chicken Wings</span></h3>
             <span class="dots"></span><span class="price">9,000</span>
           </div>
-          <p><span class="ar-t">٨ قطع متبلة بالشطة السودانية، مشوية في فرن الحطب.</span><span class="en-t block-t">8 pieces marinated in Sudanese shatta, roasted in the wood oven.</span></p>
+          <p><span class="ar-t">٨ قطع متبلة بالشطة السودانية، مشوية حتى الكمال.</span><span class="en-t block-t">8 pieces marinated in Sudanese shatta, roasted to crispy perfection.</span></p>
         </div>
       </article>
       <article class="dish">
@@ -767,13 +754,13 @@ body.lang-en .hero h1 .accent::after{--underline-origin:left}
     <div class="craft-grid">
       <div class="craft-card reveal">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-        <h3><span class="ar-t">عجينة الـ٤٨ ساعة</span><span class="en-t">The 48-Hour Dough</span></h3>
-        <p><span class="ar-t">تخمير بطيء وبارد يمنح العجينة نكهة عميقة وقواماً خفيفاً يسهل هضمه. لا نستعجل أبداً.</span><span class="en-t block-t">Slow, cold fermentation gives the dough deep flavor and a light, digestible texture. We never rush it.</span></p>
+        <h3><span class="ar-t">عجينة طازجة كل يوم</span><span class="en-t">Fresh Dough, Every Day</span></h3>
+        <p><span class="ar-t">نحضّر عجينتنا طازجة كل صباح بعناية وصبر — قوام خفيف، وأطراف ذهبية، ونكهة تستحق الانتظار.</span><span class="en-t block-t">Our dough is made fresh every morning with care and patience — light, airy, and golden at the edges.</span></p>
       </div>
       <div class="craft-card reveal reveal-d1">
-        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c4 5 7 8 7 13a7 7 0 0 1-14 0c0-5 3-8 7-13z"/><path d="M12 12c1.5 2 2.5 3.2 2.5 5a2.5 2.5 0 0 1-5 0c0-1.8 1-3 2.5-5z"/></svg></div>
-        <h3><span class="ar-t">نار الحطب الحقيقية</span><span class="en-t">Real Wood Fire</span></h3>
-        <p><span class="ar-t">فرننا يصل إلى ٤٠٠ درجة مئوية، فتنضج البيتزا في ٩٠ ثانية فقط — أطراف منتفخة ونكهة مدخنة أصيلة.</span><span class="en-t block-t">Our oven hits 400°C, baking each pizza in just 90 seconds — puffed edges and true smoky character.</span></p>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-8-5.5-8-11a4.6 4.6 0 0 1 8-3.1A4.6 4.6 0 0 1 20 10c0 5.5-8 11-8 11z"/></svg></div>
+        <h3><span class="ar-t">خدمة استثنائية</span><span class="en-t">Exceptional Service</span></h3>
+        <p><span class="ar-t">من لحظة دخولك حتى آخر قضمة، فريقنا يهتم بكل تفصيلة لتكون زيارتك ذكرى تستحق التكرار.</span><span class="en-t block-t">From the moment you walk in to the last bite, our team cares for every detail so your visit becomes a memory worth repeating.</span></p>
       </div>
       <div class="craft-card reveal reveal-d2">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.3-7-11a7 7 0 0 1 14 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
@@ -829,7 +816,7 @@ body.lang-en .hero h1 .accent::after{--underline-origin:left}
     <div class="visit-grid">
       <div>
         <span class="kicker reveal"><span class="ar-t">زورونا</span><span class="en-t">Visit Us</span></span>
-        <h2 class="reveal reveal-d1"><span class="ar-t">الفرن ولّع،<br>والنيل قريب</span><span class="en-t block-t">The oven is lit,<br>and the Nile is near</span></h2>
+        <h2 class="reveal reveal-d1"><span class="ar-t">الطاولة جاهزة،<br>والنيل قريب</span><span class="en-t block-t">The table is set,<br>and the Nile is near</span></h2>
         <ul class="info-list">
           <li class="reveal reveal-d2">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.3-7-11a7 7 0 0 1 14 0c0 5.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
@@ -872,8 +859,8 @@ body.lang-en .hero h1 .accent::after{--underline-origin:left}
       <span><span class="ar-t">ليبر بيتزا</span><span class="en-t">Liper Pizza</span></span>
     </a>
     <p class="footer-note">
-      <span class="ar-t">© ٢٠٢٦ ليبر بيتزا — أم درمان، السودان. نشارككم الحب، على نار هادئة.</span>
-      <span class="en-t">© 2026 Liper Pizza — Omdurman, Sudan. Sharing love, over a gentle flame.</span>
+      <span class="ar-t">© ٢٠٢٦ ليبر بيتزا — أم درمان، السودان. أكثر من بيتزا، نشارككم الحب.</span>
+      <span class="en-t">© 2026 Liper Pizza — Omdurman, Sudan. More than pizza — sharing love.</span>
     </p>
   </div>
 </footer>
