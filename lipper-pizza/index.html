@@ -275,36 +275,32 @@ body.lang-en .story-tagline{font-family:var(--font-display-en)}
 }
 .tab:hover{border-color:var(--clr-gold);color:var(--clr-gold);transform:translateY(-2px)}
 .tab[aria-selected="true"]{background:var(--clr-gold);border-color:var(--clr-gold);color:var(--clr-char);font-weight:600}
-.menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-3);max-width:980px;margin:0 auto}
 .menu-panel{display:none}
-.menu-panel.active{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-3)}
-.dish{
+.menu-panel.active{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3)}
+.mcard{
   background:rgba(250,241,227,.05);
   border:1px solid rgba(250,241,227,.1);
-  border-radius:var(--radius);padding:var(--space-3);
-  display:flex;gap:var(--space-2);align-items:flex-start;
+  border-radius:var(--radius);overflow:hidden;
+  display:flex;flex-direction:column;
   transition:transform .25s var(--ease-out),background .25s,border-color .25s;
 }
-.dish:hover{transform:translateY(-4px);background:rgba(250,241,227,.09);border-color:rgba(226,123,180,.45)}
-.dish-icon{
-  width:52px;height:52px;flex:none;border-radius:14px;
-  background:rgba(226,123,180,.14);display:grid;place-items:center;color:var(--clr-gold);
-}
-.dish-icon svg{width:26px;height:26px}
-.dish-body{flex:1;min-width:0}
-.dish-top{display:flex;align-items:baseline;gap:12px}
-.dish h3{font-size:1.2rem;font-weight:700;color:var(--clr-cream)}
-.dish .dots{flex:1;border-bottom:2px dotted rgba(250,241,227,.25);transform:translateY(-4px)}
-.dish .price{
+.mcard:hover{transform:translateY(-4px);background:rgba(250,241,227,.08);border-color:rgba(226,123,180,.45)}
+.mcard img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:rgba(250,241,227,.06)}
+.mcard-body{padding:var(--space-2) var(--space-2) 18px;display:flex;flex-direction:column;gap:10px;flex:1}
+.mcard h3{font-size:1.12rem;font-weight:700;color:var(--clr-cream);line-height:1.3}
+.price-solo{
   font-family:var(--font-display-en);font-weight:700;color:var(--clr-gold);
-  font-size:1.05rem;white-space:nowrap;font-variant-numeric:tabular-nums;
+  font-size:1.15rem;font-variant-numeric:tabular-nums;margin-top:auto;
 }
-.dish p{font-size:.88rem;color:rgba(250,241,227,.6);margin-top:4px;font-weight:300}
-.dish .badge{
-  display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:.05em;
-  background:var(--clr-brick);color:#fff;border-radius:999px;padding:2px 10px;
-  margin-inline-start:8px;vertical-align:middle;
+.price-solo .cur,.sz .cur{font-size:.68rem;font-weight:500;color:rgba(250,241,227,.55);margin-inline-start:4px;font-family:var(--font-body)}
+.sizes{display:flex;gap:8px;margin-top:auto}
+.sz{
+  flex:1;text-align:center;border-radius:12px;padding:7px 4px;
+  background:rgba(226,123,180,.10);border:1px solid rgba(226,123,180,.18);
 }
+.sz .lb{display:block;font-size:.68rem;color:rgba(250,241,227,.6);font-weight:500}
+.sz .pr{display:block;font-family:var(--font-display-en);font-weight:700;color:var(--clr-gold);font-size:.95rem;font-variant-numeric:tabular-nums}
+@media (max-width:1100px){.menu-panel.active{grid-template-columns:repeat(2,1fr)}}
 .menu-cta{text-align:center;margin-top:var(--space-6)}
 .menu-cta .note{font-size:.85rem;color:rgba(250,241,227,.5);margin-top:var(--space-2)}
 
@@ -570,166 +566,306 @@ body.lang-en .story-tagline{font-family:var(--font-display-en)}
       <p class="reveal reveal-d2"><span class="ar-t">الأسعار بالجنيه السوداني. كل بيتزا تُحضّر عند الطلب.</span><span class="en-t">Prices in Sudanese Pounds. Every pizza is made to order.</span></p>
     </div>
 
-    <div class="tabs reveal" role="tablist" aria-label="Menu categories">
-      <button class="tab" role="tab" aria-selected="true" aria-controls="panel-pizza" id="tab-pizza">
-        <span class="ar-t">البيتزا</span><span class="en-t">Pizzas</span>
-      </button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-sides" id="tab-sides">
-        <span class="ar-t">المقبلات</span><span class="en-t">Sides</span>
-      </button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-drinks" id="tab-drinks">
-        <span class="ar-t">المشروبات</span><span class="en-t">Drinks</span>
-      </button>
+        <div class="tabs reveal" role="tablist" aria-label="Menu categories">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="panel-pizza" id="tab-pizza"><span class="ar-t">البيتزا</span><span class="en-t">Pizzas</span></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-sand" id="tab-sand"><span class="ar-t">الساندويتشات</span><span class="en-t">Sandwiches</span></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-sides" id="tab-sides"><span class="ar-t">الأطباق الجانبية</span><span class="en-t">Sides</span></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-special" id="tab-special"><span class="ar-t">سبيشال ليبر</span><span class="en-t">Liper Special</span></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-dessert" id="tab-dessert"><span class="ar-t">الحلويات</span><span class="en-t">Desserts</span></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-juice" id="tab-juice"><span class="ar-t">العصائر</span><span class="en-t">Juices</span></button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-extra" id="tab-extra"><span class="ar-t">الإضافات</span><span class="en-t">Extras</span></button>
     </div>
 
-    <!-- PIZZAS -->
     <div class="menu-panel active" id="panel-pizza" role="tabpanel" aria-labelledby="tab-pizza">
-      <article class="dish reveal">
-        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 L21 19 Q12 23 3 19 Z"/><circle cx="12" cy="12" r="1" fill="currentColor"/><circle cx="9.5" cy="16" r="1" fill="currentColor"/><circle cx="14.5" cy="16.5" r="1" fill="currentColor"/></svg></div>
-        <div class="dish-body">
-          <div class="dish-top">
-            <h3><span class="ar-t">ليبر سبيشال</span><span class="en-t">Liper Special</span><span class="badge"><span class="ar-t">الأشهر</span><span class="en-t">Popular</span></span></h3>
-            <span class="dots"></span><span class="price">18,000</span>
+      <article class="mcard reveal reveal-d1">
+        <img src="assets/menu/vegetable-pizza.jpg" alt="Vegetable Pizza" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Vegetable Pizza</h3>
+          <div class="sizes">
+            <span class="sz"><span class="lb"><span class="ar-t">صغير</span><span class="en-t">Small</span></span><span class="pr">9,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">وسط</span><span class="en-t">Medium</span></span><span class="pr">15,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">كبير</span><span class="en-t">Large</span></span><span class="pr">21,000</span></span>
           </div>
-          <p><span class="ar-t">لحم مفروم متبل على الطريقة السودانية، فلفل أخضر، بصل مشوي، وجبنة موزاريلا مدخنة.</span><span class="en-t block-t">Sudanese-spiced minced beef, green pepper, charred onion, and smoked mozzarella.</span></p>
         </div>
       </article>
-      <article class="dish reveal reveal-d1">
-        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="9" r="1.2" fill="currentColor"/><circle cx="15" cy="10" r="1.2" fill="currentColor"/><circle cx="11" cy="15" r="1.2" fill="currentColor"/></svg></div>
-        <div class="dish-body">
-          <div class="dish-top">
-            <h3><span class="ar-t">مارغريتا كلاسيك</span><span class="en-t">Classic Margherita</span></h3>
-            <span class="dots"></span><span class="price">12,000</span>
+      <article class="mcard reveal reveal-d2">
+        <img src="assets/menu/margherita-pizza.jpg" alt="Margherita Pizza" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Margherita Pizza</h3>
+          <div class="sizes">
+            <span class="sz"><span class="lb"><span class="ar-t">صغير</span><span class="en-t">Small</span></span><span class="pr">10,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">وسط</span><span class="en-t">Medium</span></span><span class="pr">17,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">كبير</span><span class="en-t">Large</span></span><span class="pr">23,000</span></span>
           </div>
-          <p><span class="ar-t">صلصة طماطم طازجة، موزاريلا، ريحان، وزيت زيتون بكر.</span><span class="en-t block-t">Fresh tomato sauce, mozzarella, basil, and extra-virgin olive oil.</span></p>
         </div>
       </article>
-      <article class="dish reveal reveal-d1">
-        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="8.5" cy="9.5" r="2"/><circle cx="15" cy="13.5" r="2"/></svg></div>
-        <div class="dish-body">
-          <div class="dish-top">
-            <h3><span class="ar-t">بيبروني ناري</span><span class="en-t">Fiery Pepperoni</span></h3>
-            <span class="dots"></span><span class="price">16,000</span>
+      <article class="mcard reveal reveal-d3">
+        <img src="assets/menu/hot-dog-pizza.jpg" alt="Hot Dog Pizza" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Hot Dog Pizza</h3>
+          <div class="sizes">
+            <span class="sz"><span class="lb"><span class="ar-t">صغير</span><span class="en-t">Small</span></span><span class="pr">15,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">وسط</span><span class="en-t">Medium</span></span><span class="pr">22,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">كبير</span><span class="en-t">Large</span></span><span class="pr">27,000</span></span>
           </div>
-          <p><span class="ar-t">بيبروني بقري، شطة سودانية خفيفة، وعسل حار على الأطراف.</span><span class="en-t block-t">Beef pepperoni, a whisper of Sudanese shatta, hot honey on the crust.</span></p>
         </div>
       </article>
-      <article class="dish reveal reveal-d2">
-        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 20 Q4 12 8 7t9-3q3 4-1 9t-8 7z"/><path d="M9 15c2-2 5-5 7-9"/></svg></div>
-        <div class="dish-body">
-          <div class="dish-top">
-            <h3><span class="ar-t">دجاج مشوي بالباربكيو</span><span class="en-t">BBQ Grilled Chicken</span></h3>
-            <span class="dots"></span><span class="price">15,000</span>
+      <article class="mcard reveal reveal-d1">
+        <img src="assets/menu/alfredo-pizza.jpg" alt="Alfredo Pizza" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Alfredo Pizza</h3>
+          <div class="sizes">
+            <span class="sz"><span class="lb"><span class="ar-t">صغير</span><span class="en-t">Small</span></span><span class="pr">20,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">وسط</span><span class="en-t">Medium</span></span><span class="pr">35,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">كبير</span><span class="en-t">Large</span></span><span class="pr">38,000</span></span>
           </div>
-          <p><span class="ar-t">دجاج مشوي متبل، صلصة باربكيو مدخنة، بصل أحمر وذرة.</span><span class="en-t block-t">Marinated grilled chicken, smoky BBQ sauce, red onion, and corn.</span></p>
         </div>
       </article>
-      <article class="dish reveal reveal-d2">
-        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M5.6 5.6l2.1 2.1M3 12h3M18.4 5.6l-2.1 2.1M21 12h-3"/><path d="M7 21a5 5 0 0 1 10 0z"/></svg></div>
-        <div class="dish-body">
-          <div class="dish-top">
-            <h3><span class="ar-t">خضار الفرن</span><span class="en-t">Garden Roast</span></h3>
-            <span class="dots"></span><span class="price">11,000</span>
+      <article class="mcard reveal reveal-d2">
+        <img src="assets/menu/bbq-chicken-pizza.jpg" alt="BBQ Chicken Pizza" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>BBQ Chicken Pizza</h3>
+          <div class="sizes">
+            <span class="sz"><span class="lb"><span class="ar-t">صغير</span><span class="en-t">Small</span></span><span class="pr">12,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">وسط</span><span class="en-t">Medium</span></span><span class="pr">21,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">كبير</span><span class="en-t">Large</span></span><span class="pr">26,000</span></span>
           </div>
-          <p><span class="ar-t">فلفل ملون مشوي، فطر، زيتون، طماطم كرزية، وجبنة فيتا.</span><span class="en-t block-t">Oven-roasted peppers, mushrooms, olives, cherry tomatoes, and feta.</span></p>
         </div>
       </article>
-      <article class="dish reveal reveal-d3">
-        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15c0-5 4-9 8-9s8 4 8 9"/><path d="M4 15h16M8 19h8"/></svg></div>
-        <div class="dish-body">
-          <div class="dish-top">
-            <h3><span class="ar-t">أربع أجبان</span><span class="en-t">Four Cheese</span></h3>
-            <span class="dots"></span><span class="price">17,000</span>
+      <article class="mcard reveal reveal-d3">
+        <img src="assets/menu/chicken-supreme-pizza.jpg" alt="Chicken Supreme Pizza" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Chicken Supreme Pizza</h3>
+          <div class="sizes">
+            <span class="sz"><span class="lb"><span class="ar-t">صغير</span><span class="en-t">Small</span></span><span class="pr">15,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">وسط</span><span class="en-t">Medium</span></span><span class="pr">27,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">كبير</span><span class="en-t">Large</span></span><span class="pr">32,000</span></span>
           </div>
-          <p><span class="ar-t">موزاريلا، شيدر، جبنة بيضاء سودانية، وبارميزان مع عسل النحل.</span><span class="en-t block-t">Mozzarella, cheddar, Sudanese white cheese, and parmesan with a drizzle of honey.</span></p>
+        </div>
+      </article>
+      <article class="mcard reveal reveal-d1">
+        <img src="assets/menu/cheese-lovers-pizza.jpg" alt="Cheese Lovers Pizza" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Cheese Lovers Pizza</h3>
+          <div class="sizes">
+            <span class="sz"><span class="lb"><span class="ar-t">صغير</span><span class="en-t">Small</span></span><span class="pr">15,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">وسط</span><span class="en-t">Medium</span></span><span class="pr">25,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">كبير</span><span class="en-t">Large</span></span><span class="pr">30,000</span></span>
+          </div>
+        </div>
+      </article>
+      <article class="mcard reveal reveal-d2">
+        <img src="assets/menu/beef-pizza.jpg" alt="Beef Pizza" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Beef Pizza</h3>
+          <div class="sizes">
+            <span class="sz"><span class="lb"><span class="ar-t">صغير</span><span class="en-t">Small</span></span><span class="pr">12,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">وسط</span><span class="en-t">Medium</span></span><span class="pr">20,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">كبير</span><span class="en-t">Large</span></span><span class="pr">27,000</span></span>
+          </div>
+        </div>
+      </article>
+      <article class="mcard reveal reveal-d3">
+        <img src="assets/menu/mexican-pizza.jpg" alt="Mexican Pizza" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Mexican Pizza</h3>
+          <div class="sizes">
+            <span class="sz"><span class="lb"><span class="ar-t">صغير</span><span class="en-t">Small</span></span><span class="pr">15,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">وسط</span><span class="en-t">Medium</span></span><span class="pr">22,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">كبير</span><span class="en-t">Large</span></span><span class="pr">27,000</span></span>
+          </div>
+        </div>
+      </article>
+      <article class="mcard reveal reveal-d1">
+        <img src="assets/menu/quatro-pizza.jpg" alt="Quatro Pizza" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Quatro Pizza</h3>
+          <div class="sizes">
+            <span class="sz"><span class="lb"><span class="ar-t">صغير</span><span class="en-t">Small</span></span><span class="pr">20,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">وسط</span><span class="en-t">Medium</span></span><span class="pr">29,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">كبير</span><span class="en-t">Large</span></span><span class="pr">35,000</span></span>
+          </div>
         </div>
       </article>
     </div>
-
-    <!-- SIDES -->
+    <div class="menu-panel" id="panel-sand" role="tabpanel" aria-labelledby="tab-sand" hidden>
+      <article class="mcard">
+        <img src="assets/menu/chicken-wrap.jpg" alt="Chicken Wrap" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Chicken Wrap</h3>
+          <div class="price-solo">22,000<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
+        </div>
+      </article>
+      <article class="mcard">
+        <img src="assets/menu/chicken-fillet.jpg" alt="Chicken Fillet" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Chicken Fillet</h3>
+          <div class="price-solo">18,000<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
+        </div>
+      </article>
+      <article class="mcard">
+        <img src="assets/menu/big-liper.jpg" alt="Big Liper" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Big Liper</h3>
+          <div class="price-solo">25,000<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
+        </div>
+      </article>
+      <article class="mcard">
+        <img src="assets/menu/zinger.jpg" alt="Zinger" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Zinger</h3>
+          <div class="price-solo">17,000<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
+        </div>
+      </article>
+    </div>
     <div class="menu-panel" id="panel-sides" role="tabpanel" aria-labelledby="tab-sides" hidden>
-      <article class="dish">
-        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="4" rx="2"/><path d="M6 13v5a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-5"/></svg></div>
-        <div class="dish-body">
-          <div class="dish-top">
-            <h3><span class="ar-t">خبز بالثوم والجبنة</span><span class="en-t">Cheesy Garlic Bread</span></h3>
-            <span class="dots"></span><span class="price">6,000</span>
-          </div>
-          <p><span class="ar-t">من عجينتنا الطازجة، زبدة ثوم، وموزاريلا ذائبة.</span><span class="en-t block-t">Made from our fresh dough, garlic butter, melted mozzarella.</span></p>
+      <article class="mcard">
+        <img src="assets/menu/alfredo.jpg" alt="Alfredo" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Alfredo</h3>
+          <div class="price-solo">28,000<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
         </div>
       </article>
-      <article class="dish">
-        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4c-2 4-2 8 0 12M12 3c-2 5-2 10 0 15M16 4c-2 4-2 8 0 12"/><path d="M5 20h14"/></svg></div>
-        <div class="dish-body">
-          <div class="dish-top">
-            <h3><span class="ar-t">أجنحة دجاج حارة</span><span class="en-t">Spicy Chicken Wings</span></h3>
-            <span class="dots"></span><span class="price">9,000</span>
-          </div>
-          <p><span class="ar-t">٨ قطع متبلة بالشطة السودانية، مشوية حتى الكمال.</span><span class="en-t block-t">8 pieces marinated in Sudanese shatta, roasted to crispy perfection.</span></p>
+      <article class="mcard">
+        <img src="assets/menu/chicken-roll.jpg" alt="Chicken Roll" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Chicken Roll</h3>
+          <div class="price-solo">21,000<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
         </div>
       </article>
-      <article class="dish">
-        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21l1.5-12h7L17 21z"/><path d="M9 9l1-5M12 9V4M15 9l-1-5"/></svg></div>
-        <div class="dish-body">
-          <div class="dish-top">
-            <h3><span class="ar-t">بطاطس بالروزماري</span><span class="en-t">Rosemary Fries</span></h3>
-            <span class="dots"></span><span class="price">5,000</span>
-          </div>
-          <p><span class="ar-t">مقرمشة، مع ملح البحر وإكليل الجبل وصلصة الثوم.</span><span class="en-t block-t">Crispy, with sea salt, rosemary, and garlic aioli.</span></p>
+      <article class="mcard">
+        <img src="assets/menu/chips.jpg" alt="Chips" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Chips</h3>
+          <div class="price-solo">7,000<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
         </div>
       </article>
-      <article class="dish">
-        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M8 12c1.5-2 6.5-2 8 0M9 9.5c1-1 5-1 6 0"/></svg></div>
-        <div class="dish-body">
-          <div class="dish-top">
-            <h3><span class="ar-t">سلطة الموسم</span><span class="en-t">Seasonal Salad</span></h3>
-            <span class="dots"></span><span class="price">5,500</span>
-          </div>
-          <p><span class="ar-t">خضار السوق الطازجة مع صلصة الليمون والزيتون.</span><span class="en-t block-t">Fresh market greens with lemon-olive dressing.</span></p>
+      <article class="mcard">
+        <img src="assets/menu/lasagna.jpg" alt="Lasagna" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Lasagna</h3>
+          <div class="price-solo">15,000<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
         </div>
       </article>
     </div>
-
-    <!-- DRINKS -->
-    <div class="menu-panel" id="panel-drinks" role="tabpanel" aria-labelledby="tab-drinks" hidden>
-      <article class="dish">
-        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l-1 18H9z"/><path d="M8.5 10h7"/></svg></div>
-        <div class="dish-body">
-          <div class="dish-top">
-            <h3><span class="ar-t">كركديه مثلج</span><span class="en-t">Iced Karkadeh</span><span class="badge"><span class="ar-t">سوداني أصيل</span><span class="en-t">Sudanese</span></span></h3>
-            <span class="dots"></span><span class="price">3,000</span>
+    <div class="menu-panel" id="panel-special" role="tabpanel" aria-labelledby="tab-special" hidden>
+      <article class="mcard">
+        <img src="assets/menu/alfredo-cheese-roll.jpg" alt="Alfredo Cheese Roll" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Alfredo Cheese Roll</h3>
+          <div class="sizes">
+            <span class="sz"><span class="lb"><span class="ar-t">صغير</span><span class="en-t">Small</span></span><span class="pr">20,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">وسط</span><span class="en-t">Medium</span></span><span class="pr">29,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">كبير</span><span class="en-t">Large</span></span><span class="pr">38,000</span></span>
           </div>
-          <p><span class="ar-t">كركديه بارد منقوع ببطء مع نعناع طازج — رفيق البيتزا الأمثل.</span><span class="en-t block-t">Slow-steeped cold hibiscus with fresh mint — pizza's perfect companion.</span></p>
         </div>
       </article>
-      <article class="dish">
-        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v3a3 3 0 0 1-6 0z"/><path d="M7 6h10l-1.2 13a2 2 0 0 1-2 1.8H10.2a2 2 0 0 1-2-1.8z"/></svg></div>
-        <div class="dish-body">
-          <div class="dish-top">
-            <h3><span class="ar-t">عصير مانجو طازج</span><span class="en-t">Fresh Mango Juice</span></h3>
-            <span class="dots"></span><span class="price">4,000</span>
+      <article class="mcard">
+        <img src="assets/menu/liper-roll.jpg" alt="Liper Roll" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Liper Roll</h3>
+          <div class="sizes">
+            <span class="sz"><span class="lb"><span class="ar-t">صغير</span><span class="en-t">Small</span></span><span class="pr">20,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">وسط</span><span class="en-t">Medium</span></span><span class="pr">29,000</span></span>
+            <span class="sz"><span class="lb"><span class="ar-t">كبير</span><span class="en-t">Large</span></span><span class="pr">38,000</span></span>
           </div>
-          <p><span class="ar-t">مانجو سوداني معصور طازجاً كل يوم.</span><span class="en-t block-t">Sudanese mango, freshly pressed daily.</span></p>
         </div>
       </article>
-      <article class="dish">
-        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h4M12 2v4"/><rect x="7" y="6" width="10" height="16" rx="3"/></svg></div>
-        <div class="dish-body">
-          <div class="dish-top">
-            <h3><span class="ar-t">مشروبات غازية</span><span class="en-t">Soft Drinks</span></h3>
-            <span class="dots"></span><span class="price">2,000</span>
-          </div>
-          <p><span class="ar-t">كولا، سبرايت، ميرندا — مثلجة.</span><span class="en-t block-t">Cola, Sprite, Mirinda — ice cold.</span></p>
+    </div>
+    <div class="menu-panel" id="panel-dessert" role="tabpanel" aria-labelledby="tab-dessert" hidden>
+      <article class="mcard">
+        <img src="assets/menu/marshmallow-pizza.jpg" alt="Marshmallow Pizza" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Marshmallow Pizza</h3>
+          <div class="price-solo">12,000<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
         </div>
       </article>
-      <article class="dish">
-        <div class="dish-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11z"/></svg></div>
-        <div class="dish-body">
-          <div class="dish-top">
-            <h3><span class="ar-t">مياه معدنية</span><span class="en-t">Mineral Water</span></h3>
-            <span class="dots"></span><span class="price">1,000</span>
-          </div>
-          <p><span class="ar-t">باردة أو بحرارة الغرفة.</span><span class="en-t block-t">Chilled or room temperature.</span></p>
+      <article class="mcard">
+        <img src="assets/menu/cinnabon-roll.jpg" alt="Cinnabon Roll" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Cinnabon Roll</h3>
+          <div class="price-solo">5,000<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
+        </div>
+      </article>
+      <article class="mcard">
+        <img src="assets/menu/cheese-cake.jpg" alt="Cheese Cake" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Cheese Cake</h3>
+          <div class="price-solo">25,000<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
+        </div>
+      </article>
+    </div>
+    <div class="menu-panel" id="panel-juice" role="tabpanel" aria-labelledby="tab-juice" hidden>
+      <article class="mcard">
+        <img src="assets/menu/strawberry.jpg" alt="Strawberry" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Strawberry</h3>
+          <div class="price-solo">2,500<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
+        </div>
+      </article>
+      <article class="mcard">
+        <img src="assets/menu/mango.jpg" alt="Mango" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Mango</h3>
+          <div class="price-solo">2,500<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
+        </div>
+      </article>
+      <article class="mcard">
+        <img src="assets/menu/mojito.jpg" alt="Mojito" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Mojito</h3>
+          <div class="price-solo">2,000<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
+        </div>
+      </article>
+    </div>
+    <div class="menu-panel" id="panel-extra" role="tabpanel" aria-labelledby="tab-extra" hidden>
+      <article class="mcard">
+        <img src="assets/menu/extra-cheese.jpg" alt="Cheese" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Cheese</h3>
+          <div class="price-solo">2,500<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
+        </div>
+      </article>
+      <article class="mcard">
+        <img src="assets/menu/extra-cheddar.jpg" alt="Cheddar Cheese" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Cheddar Cheese</h3>
+          <div class="price-solo">2,000<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
+        </div>
+      </article>
+      <article class="mcard">
+        <img src="assets/menu/extra-olive.jpg" alt="Olive" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Olive</h3>
+          <div class="price-solo">1,000<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
+        </div>
+      </article>
+      <article class="mcard">
+        <img src="assets/menu/extra-hotdog.jpg" alt="Hot Dog" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Hot Dog</h3>
+          <div class="price-solo">4,000<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
+        </div>
+      </article>
+      <article class="mcard">
+        <img src="assets/menu/extra-beef.jpg" alt="Beef" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Beef</h3>
+          <div class="price-solo">5,000<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
+        </div>
+      </article>
+      <article class="mcard">
+        <img src="assets/menu/extra-chicken.jpg" alt="Chicken" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Chicken</h3>
+          <div class="price-solo">5,000<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
+        </div>
+      </article>
+      <article class="mcard">
+        <img src="assets/menu/extra-sauce.jpg" alt="Any Sauce" loading="lazy" width="560" height="420">
+        <div class="mcard-body">
+          <h3>Any Sauce</h3>
+          <div class="price-solo">2,000<span class="cur"><span class="ar-t">ج.س</span><span class="en-t">SDG</span></span></div>
         </div>
       </article>
     </div>
